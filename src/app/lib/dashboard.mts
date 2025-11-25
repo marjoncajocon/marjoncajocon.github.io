@@ -1,33 +1,47 @@
 import { CardV2, FaIcon, FaIcons } from "../plugin/core/bs.3.mts";
-import MarAdmin, { MarMenu } from "../plugin/core/theme/mar/mar.mts";
+import LTEApp, { LTEMenuButton } from "../plugin/core/lte.3.mts";
 import AboutMe from "./about/me.mts";
 import Projects from "./project/proj.mts";
 
-class Dashboard extends MarAdmin {
+class Dashboard extends LTEApp {
 
   constructor() {
     super({
-      title: "Marjon Cajocon",
-      topBarColor: "#00C853",
+      userName: "MARJ",
+      logo: "res/profile.jpg",
+      userPhoto: "res/profile.jpg",
+      title: "MARJON CAJOCON",
       sideMenu: [
-        new MarMenu({
-          logo: new FaIcon(FaIcons.QuestionCircle),
+        new LTEMenuButton({
+          icon: FaIcons.QuestionCircle,
           title: "About Me",
-          click: () => {
-            this.route(new CardV2({body: new AboutMe(), bodyPadding: true}));
+          fn: () => {
+            this.route({
+              title: "About Me",
+              page: ["MARJ", "About Me"],
+              body: new AboutMe()
+            });
           }
         }),
-        new MarMenu({
-          logo: new FaIcon(FaIcons.FolderOpen),
-          title: "Projects",
-          click: () => {
-            this.route(new Projects());
+        new LTEMenuButton({
+          icon: FaIcons.FolderOpen,
+          title: "My Projects",
+          fn: () => {
+            this.route({
+              title: "About Me",
+              page: ["MARJ", "My Project"],
+              body: new Projects()
+            });
           }
         })
       ]
     });
 
-    this.route(new CardV2({body: new AboutMe(), bodyPadding: true}));
+    this.route({
+      title: "About Me",
+      page: ["MARJ", "About Me"],
+      body: new AboutMe()
+    });
   }
 
 }
