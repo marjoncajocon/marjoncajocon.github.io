@@ -10,7 +10,6 @@ import (
 /* for mysql connector */
 func initDB(dbhost string) *sql.DB {
 
-	/* DB_CASHIER, db_err2 := InitDB2("myusername:mypassword@tcp(127.0.0.1:3380)/finance_cashier") */
 	db, err := sql.Open("mysql", dbhost)
 	if err != nil {
 		fmt.Println("invalid connection!")
