@@ -1,10 +1,10 @@
-import { Button, Html, Panel } from "../../plugin/core/bs.3.mts";
+import { Button, CardV2, Html, Panel } from "../../plugin/core/bs.3.mts";
 
 class AboutMe extends Panel {
     constructor() {
         super();
 
-        super.Add(new Html({text: `
+        super.Add(new CardV2({body: new Html({text: `
             <style>
                 body {
                     font-family: "Poppins", sans-serif;
@@ -81,7 +81,9 @@ class AboutMe extends Panel {
                 systems with intuitive frontend experiences, creating applications that are both
                 powerful and beautifully designed.
             </p>    
-        `}));
+        `})}).AddStyle({
+            "padding": "10px"
+        }));
     }
 }
 
