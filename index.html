@@ -220,7 +220,9 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
       <div class="bg-card-light p-4 rounded-xl border border-soft flex items-center gap-3 shadow-sm">
         <i class="fab fa-github text-2xl text-main"></i>
-        <div><div class="text-sm font-semibold text-main">60+ private repos</div><div class="text-xs text-muted">Go · TypeScript · JS</div></div>
+        <div>
+          <div id="ggit" class="text-sm font-semibold text-main">60+ private repos</div><div class="text-xs text-muted">Go · TypeScript · JS</div>
+        </div>
       </div>
       <div class="bg-card-light p-4 rounded-xl border border-soft flex items-center gap-3 shadow-sm">
         <i class="fas fa-certificate text-2xl text-emerald-600"></i>
@@ -244,6 +246,12 @@
 
   <script>
     (function() {
+      const ggit = document.getElementById('ggit');
+      
+      ggit.addEventListener('click', () => {
+        location.href = 'https://github.com/marjoncajocon';
+      });
+      
       const toggleBtn = document.getElementById('themeToggle');
       const icon = toggleBtn.querySelector('i');
       const stored = localStorage.getItem('theme');
