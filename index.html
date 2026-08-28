@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marjon Cajocon — strong checkers and chess engines powered by NNUE neural networks</title>
+<title>Strong NNUE checkers and chess engines · Marjon Cajocon</title>
 <meta name="description" content="Offline checkers and chess apps with hand-written NNUE neural-network engines in C. Six draughts variants and chess, trained from self-play, playing strong on a phone.">
 <link rel="canonical" href="https://marjoncajocon.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Marjon Cajocon">
-<meta property="og:title" content="Marjon Cajocon — strong checkers and chess engines powered by NNUE neural networks">
+<meta property="og:title" content="Strong NNUE checkers and chess engines · Marjon Cajocon">
 <meta property="og:description" content="Offline checkers and chess apps with hand-written NNUE neural-network engines in C. Six draughts variants and chess, trained from self-play, playing strong on a phone.">
 <meta property="og:url" content="https://marjoncajocon.github.io/">
 <meta property="og:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Marjon Cajocon — strong checkers and chess engines powered by NNUE neural networks">
+<meta name="twitter:title" content="Strong NNUE checkers and chess engines · Marjon Cajocon">
 <meta name="twitter:description" content="Offline checkers and chess apps with hand-written NNUE neural-network engines in C. Six draughts variants and chess, trained from self-play, playing strong on a phone.">
 <meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
 <meta name="robots" content="index,follow">
@@ -57,7 +57,9 @@
     <div class="stat"><b>100%</b><span>offline play</span></div>
   </div>
   <figure class="hero-shot">
-    <img src="/assets/img/hero_3d.png" width="2400" height="1200" fetchpriority="high"
+    <!-- This is the LCP element, so it gets the 1600px WebP (~40 KB) rather
+         than the 358 KB PNG, and fetchpriority to jump the queue. -->
+    <img src="/assets/img/hero_3d.hero.webp" width="1600" height="800" fetchpriority="high"
          alt="The Chess Ta! 3D board: chess pieces on a wooden table, rendered in 3D">
     <figcaption>The 3D board in Chess&nbsp;Ta! — the same renderer runs in every app here.</figcaption>
   </figure>

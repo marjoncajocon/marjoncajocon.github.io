@@ -36,7 +36,7 @@ PROJECTS = [
     dict(
         slug="chess-ta", name="Chess Ta!", kind="Chess",
         tagline="Offline chess with an NNUE engine, a real 3D board, and analysis tools.",
-        title="Chess Ta! — offline chess app with an NNUE neural-network engine and 3D board",
+        title="Chess Ta! — offline chess with an NNUE engine and 3D board",
         desc="Chess Ta! plays offline chess with a hand-written NNUE neural-network engine in C, "
              "a real 3D board, an analysis board, game review and eleven difficulty tiers.",
         keyword="offline chess app NNUE engine 3D board",
@@ -65,7 +65,7 @@ PROJECTS = [
     dict(
         slug="dama-ta", name="Dama Ta!", kind="Filipino draughts",
         tagline="Filipino dama with the strongest net in the family — a 512-wide NNUE.",
-        title="Dama Ta! — Filipino dama app with an NNUE neural-network engine",
+        title="Dama Ta! — Filipino dama with an NNUE engine",
         desc="Dama Ta! plays Filipino dama offline against a hand-written NNUE neural-network "
              "engine in C, with a 3D board, analysis tools and custom positions.",
         keyword="Filipino dama NNUE engine",
@@ -88,7 +88,7 @@ PROJECTS = [
     dict(
         slug="brazilian", name="Brazilian Checkers", kind="Brazilian draughts",
         tagline="8×8 Brazilian rules with international capture logic, on a 256-wide NNUE.",
-        title="Brazilian Checkers — NNUE neural-network engine, offline Android app",
+        title="Brazilian Checkers — NNUE neural-network engine",
         desc="Brazilian checkers played offline against a hand-written NNUE neural-network "
              "engine in C, with a 3D board, analysis tools and custom positions.",
         keyword="Brazilian checkers NNUE neural network app",
@@ -111,7 +111,7 @@ PROJECTS = [
     dict(
         slug="international", name="International Draughts", kind="International draughts",
         tagline="The 10×10 game, 20 pieces a side, on a compact 32-wide net.",
-        title="International Draughts 10×10 — neural-network engine, offline Android app",
+        title="International Draughts 10×10 — NNUE engine app",
         desc="International draughts on a 10×10 board, played offline against a hand-written "
              "NNUE neural-network engine in C, with a 3D board and analysis tools.",
         keyword="International draughts 10x10 neural network engine",
@@ -134,7 +134,7 @@ PROJECTS = [
     dict(
         slug="russian", name="Russian Checkers", kind="Russian draughts",
         tagline="Russian rules, including promotion mid-capture, on a 128-wide NNUE.",
-        title="Russian Checkers — NNUE neural-network engine, offline Android app",
+        title="Russian Checkers — NNUE neural-network engine",
         desc="Russian checkers played offline against a hand-written NNUE neural-network engine "
              "in C, with a 3D board, analysis tools and custom positions.",
         keyword="Russian checkers AI neural network",
@@ -157,7 +157,7 @@ PROJECTS = [
     dict(
         slug="english", name="English Draughts", kind="English / American checkers",
         tagline="The classic American game — men capture forward only — on a 128-wide NNUE.",
-        title="English / American Checkers — NNUE neural-network engine, offline app",
+        title="English and American Checkers — NNUE engine",
         desc="English draughts (American checkers) played offline against a hand-written NNUE "
              "neural-network engine in C, with a 3D board and analysis tools.",
         keyword="English American checkers NNUE engine",
@@ -180,7 +180,7 @@ PROJECTS = [
     dict(
         slug="turkish", name="Turkish Draughts", kind="Turkish draughts",
         tagline="Orthogonal movement on all 64 squares — a different game entirely.",
-        title="Turkish Draughts — orthogonal 8×8 draughts engine in C",
+        title="Turkish Draughts — orthogonal 8×8 engine in C",
         desc="Turkish draughts on all 64 squares with orthogonal movement, played offline "
              "against a hand-written engine in C with a 3D board and analysis tools.",
         keyword="Turkish draughts engine app",
@@ -326,10 +326,15 @@ def jsonld_block(obj):
 def gallery(slug, images):
     out = ['<div class="gallery">']
     for fn, cap, alt in images:
-        src = f"/assets/img/{slug}/{fn}"
+        full = f"/assets/img/{slug}/{fn}"
+        # The grid shows a 720px WebP (~7% of the PNG's bytes); the link still
+        # points at the original, so the lightbox is full quality. Serving the
+        # PNGs directly made these pages ~2.5 MB and wrecked LCP.
+        thumb = full[:-4] + ".thumb.webp"
         out.append(
-            f'<figure style="margin:0"><a class="shot" href="{src}" data-cap="{html.escape(cap)}">'
-            f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy" width="800" height="600">'
+            f'<figure style="margin:0"><a class="shot" href="{full}" data-cap="{html.escape(cap)}">'
+            f'<img src="{thumb}" alt="{html.escape(alt)}" loading="lazy" decoding="async" '
+            f'width="720" height="540">'
             f'</a><figcaption>{html.escape(cap)}</figcaption></figure>')
     out.append("</div>")
     return "\n".join(out)
@@ -455,7 +460,9 @@ def index_page():
     <div class="stat"><b>100%</b><span>offline play</span></div>
   </div>
   <figure class="hero-shot">
-    <img src="/assets/img/hero_3d.png" width="2400" height="1200" fetchpriority="high"
+    <!-- This is the LCP element, so it gets the 1600px WebP (~40 KB) rather
+         than the 358 KB PNG, and fetchpriority to jump the queue. -->
+    <img src="/assets/img/hero_3d.hero.webp" width="1600" height="800" fetchpriority="high"
          alt="The Chess Ta! 3D board: chess pieces on a wooden table, rendered in 3D">
     <figcaption>The 3D board in Chess&nbsp;Ta! — the same renderer runs in every app here.</figcaption>
   </figure>
@@ -500,8 +507,10 @@ inference, LoRA fine-tuning and a tool-using agent, with no framework underneath
 </div>
 </div></main>"""
 
+    # Titles are kept under ~60 characters so Google does not truncate them in
+    # results, with the ranking phrase first and the name last.
     return page(
-        "Marjon Cajocon — strong checkers and chess engines powered by NNUE neural networks",
+        "Strong NNUE checkers and chess engines · Marjon Cajocon",
         "Offline checkers and chess apps with hand-written NNUE neural-network engines in C. "
         "Six draughts variants and chess, trained from self-play, playing strong on a phone.",
         "/", body, "", jsonld=ld)
@@ -574,11 +583,18 @@ on a phone and on a desktop.</p>
 </div>
 </div></main>"""
 
+    ld = jsonld_block({
+        "@context": "https://schema.org", "@type": "TechArticle",
+        "headline": "NNUE training pipeline for draughts and chess",
+        "description": "How the shared C engine behind seven board games works.",
+        "author": {"@type": "Person", "name": AUTHOR},
+        "mainEntityOfPage": f"{SITE}/projects/engine/",
+    })
     return page(
-        "The engine — NNUE training pipeline for draughts and chess, written in C",
+        "NNUE training pipeline for draughts and chess",
         "How the shared C engine behind seven board games works: bitboard search, "
         "antisymmetric NNUE evaluation, self-play training in Go, and endgame tablebases.",
-        "/projects/engine/", body, "engine")
+        "/projects/engine/", body, "engine", jsonld=ld)
 
 
 def llm_page():
@@ -626,11 +642,19 @@ browser UI for driving training and generation.</p>
 </div>
 </div></main>"""
 
+    ld = jsonld_block({
+        "@context": "https://schema.org", "@type": "SoftwareSourceCode",
+        "name": "Pure-C LLM engine", "programmingLanguage": "C",
+        "description": "A transformer language-model stack written from scratch in "
+                       "dependency-free C11.",
+        "author": {"@type": "Person", "name": AUTHOR},
+        "url": f"{SITE}/projects/llm-project/",
+    })
     return page(
-        "Pure-C LLM engine — training, inference and a tool-using agent with no dependencies",
+        "Pure-C LLM engine — training, inference, agent",
         "A transformer language-model stack written from scratch in dependency-free C11: "
         "hand-derived backpropagation, LoRA fine-tuning, int8 inference and a tool-using agent.",
-        "/projects/llm-project/", body, "llm")
+        "/projects/llm-project/", body, "llm", jsonld=ld)
 
 
 # ── Blog ────────────────────────────────────────────────────────────────────
@@ -763,10 +787,19 @@ how strength is actually measured.</p>
 </section>
 <div class="grid">{items}</div>
 </div></main>"""
-    return page("Writing — notes on NNUE, engine strength and board-game AI",
+    ld = jsonld_block({
+        "@context": "https://schema.org", "@type": "Blog",
+        "name": "Writing — NNUE and board-game engines",
+        "url": f"{SITE}/blog/",
+        "author": {"@type": "Person", "name": AUTHOR},
+        "blogPost": [{"@type": "BlogPosting", "headline": p["title"],
+                      "url": f"{SITE}/blog/{p['slug']}/", "datePublished": p["date"]}
+                     for p in POSTS],
+    })
+    return page("Writing — NNUE, engine strength and board-game AI",
                 "Technical write-ups on NNUE neural networks for checkers and chess, and on "
                 "measuring board-game engine strength honestly.",
-                "/blog/", body, "blog")
+                "/blog/", body, "blog", jsonld=ld)
 
 
 def blog_post(p):
@@ -786,8 +819,8 @@ def blog_post(p):
 <p style="margin-top:2.4rem"><a href="/#apps">See the apps these engines ship in &rarr;</a></p>
 </article>
 </div></main>"""
-    return page(f"{p['title']} — {AUTHOR}", p["desc"], f"/blog/{p['slug']}/", body, "blog",
-                jsonld=ld)
+    # No author suffix: these headlines are already near the 60-char budget.
+    return page(p["title"], p["desc"], f"/blog/{p['slug']}/", body, "blog", jsonld=ld)
 
 
 # ── Static extras ───────────────────────────────────────────────────────────
