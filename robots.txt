@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://marjoncajocon.github.io/sitemap.xml

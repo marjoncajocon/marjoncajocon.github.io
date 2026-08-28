@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The engine — NNUE training pipeline for draughts and chess, written in C</title>
+<meta name="description" content="How the shared C engine behind seven board games works: bitboard search, antisymmetric NNUE evaluation, self-play training in Go, and endgame tablebases.">
+<link rel="canonical" href="https://marjoncajocon.github.io/projects/engine/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marjon Cajocon">
+<meta property="og:title" content="The engine — NNUE training pipeline for draughts and chess, written in C">
+<meta property="og:description" content="How the shared C engine behind seven board games works: bitboard search, antisymmetric NNUE evaluation, self-play training in Go, and endgame tablebases.">
+<meta property="og:url" content="https://marjoncajocon.github.io/projects/engine/">
+<meta property="og:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The engine — NNUE training pipeline for draughts and chess, written in C">
+<meta name="twitter:description" content="How the shared C engine behind seven board games works: bitboard search, antisymmetric NNUE evaluation, self-play training in Go, and endgame tablebases.">
+<meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="1" y="13" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/></svg> Marjon Cajocon</a>
+<nav class="nav" aria-label="Main">
+<a href="/#apps">Apps</a>
+<a href="/projects/engine/" aria-current="page">Engine</a>
+<a href="/projects/llm-project/">LLM</a>
+<a href="/blog/">Writing</a>
+<button class="btn-ghost" id="aboutBtn" type="button">About me</button>
+<button class="btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark">&#9681;</button>
+</nav></div></header>
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="/">Home</a> &rsaquo; Engine</p>
+<section class="hero" style="border:0;padding-bottom:1rem">
+  <span class="eyebrow">The shared core</span>
+  <h1>One C engine, seven games, six neural networks.</h1>
+  <p class="lede">Every app on this site is a thin Flutter shell around the same C engine.
+  The search, the move generator and the network evaluator are shared; the rules and the
+  trained net are what differ.</p>
+</section>
+
+<div class="prose">
+<h2>Search</h2>
+<p>Bitboard move generation, alpha-beta with iterative deepening, a transposition table,
+late-move reductions and futility pruning. Each variant compiles its own move generator
+from a shared template, so Turkish draughts — which moves orthogonally across all 64
+squares — reuses the same search without special-casing it.</p>
+
+<h2>Evaluation</h2>
+<p>Six of the seven engines evaluate with an NNUE network compiled directly into the
+binary. The draughts nets use an antisymmetric formulation: the network is evaluated for
+the position and for its mirror, and the difference is the score. That guarantees the
+engine values a position identically from either side, which a plain network has to learn
+approximately and never quite gets right.</p>
+<p>Weights are quantised to 16-bit integers, so evaluation is integer-only — no floating
+point in the search at all.</p>
+
+<div class="tablewrap">
+<table>
+<caption style="text-align:left;color:var(--muted);padding-bottom:.5rem">Input features and hidden width per engine.</caption>
+<thead><tr><th>Engine</th><th>Input features</th><th>Hidden units</th><th>Evaluation</th></tr></thead>
+<tbody><tr><td>Chess Ta!</td><td>768</td><td>256</td><td>NNUE</td></tr><tr><td>Dama Ta!</td><td>128</td><td>512</td><td>NNUE</td></tr><tr><td>Brazilian Checkers</td><td>128</td><td>256</td><td>NNUE</td></tr><tr><td>International Draughts</td><td>200</td><td>32</td><td>NNUE</td></tr><tr><td>Russian Checkers</td><td>128</td><td>128</td><td>NNUE</td></tr><tr><td>English Draughts</td><td>128</td><td>128</td><td>NNUE</td></tr><tr><td>Turkish Draughts</td><td>—</td><td>—</td><td>Hand-crafted</td></tr></tbody>
+</table>
+</div>
+
+<div class="callout">
+<p><strong>Turkish is honest about what it is.</strong> Its shipped build uses the
+hand-crafted evaluation. The diagonal-board nets could not be reused — Turkish draughts
+plays on all 64 squares — and the nets trained for it so far have not beaten the
+hand-crafted baseline in gated testing, so none has been promoted.</p>
+</div>
+
+<h2>Training</h2>
+<p>Nets are trained by a Go trainer against positions generated by self-play. The engine
+plays itself at a fixed depth, positions and their search scores are written out in
+shards, and the trainer fits the network to those labels. New nets are gated: a candidate
+only ships if it beats the current one over a match, which is why some trained candidates
+were never promoted.</p>
+
+<h2>Endgame tablebases</h2>
+<p>Late positions are answered from perfect-play tables rather than searched. The engines
+generate their own tablebases for small piece counts and probe them during search, so an
+endgame that a search would misjudge is played exactly.</p>
+
+<h2>Portability</h2>
+<p>The engine is plain C with no third-party dependencies. It compiles to a shared library
+for Android and Windows, and the Flutter apps call into it directly — the same code runs
+on a phone and on a desktop.</p>
+</div>
+</div></main><footer class="site-foot"><div class="wrap">
+<div class="foot-links">
+<a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/dama-ta/">Dama Ta!</a>
+<a href="/projects/brazilian/">Brazilian Checkers</a>
+<a href="/projects/international/">International Draughts</a>
+<a href="/projects/russian/">Russian Checkers</a>
+<a href="/projects/english/">English Draughts</a>
+<a href="/projects/turkish/">Turkish Draughts</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM engine</a>
+<a href="/blog/">Writing</a>
+</div>
+<p>&copy; 2026 Marjon Cajocon · published as MMC Solo Dev. Board-game engines in C, apps in Flutter.</p>
+</div></footer>
+<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><div class="about-in">
+<div class="about-head">
+  <img src="/res/profile.jpg" alt="" width="68" height="68">
+  <div><h2 id="aboutTitle" style="margin:0">Marjon Cajocon</h2>
+  <p style="margin:.2rem 0 0;color:var(--muted)">Software engineer · Talibon, Bohol, Philippines</p></div>
+</div>
+<p>I build game engines in C and the apps that ship them. Seven board-game
+engines, six of them running NNUE neural networks I trained myself, plus a
+from-scratch LLM engine written in dependency-free C.</p>
+<dl>
+  <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
+  <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
+  <dt>Certification</dt><dd>EDP Specialist (Civil Service, passed above the 80% bar)</dd>
+  <dt>Published</dt><dd>Five apps live on Google Play, more in testing</dd>
+  <dt>Contact</dt><dd><a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></dd>
+  <dt>Code</dt><dd><a href="https://github.com/marjoncajocon" rel="noopener">github.com/marjoncajocon</a></dd>
+</dl>
+<p style="margin-top:1.2rem"><button class="btn btn-outline" id="aboutClose" type="button">Close</button></p>
+</div></dialog>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

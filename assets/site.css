@@ -1,0 +1,286 @@
+/* marjoncajocon.github.io — one stylesheet for the whole site.
+   Hand-written, no framework, no build step. Dark-first: the site is about
+   board engines and the screenshots are bright, so a dark ground makes them
+   carry the page. Light mode is a full token swap, not an afterthought. */
+
+:root {
+  --bg: #0b1524;
+  --bg-2: #101d31;
+  --card: #14243a;
+  --card-2: #182b45;
+  --rule: #24354f;
+  --ink: #f3f6fa;
+  --body: #c2d0e2;
+  --muted: #8fa3bd;
+  --accent: #e8b563;
+  --accent-ink: #2a1c06;
+  --link: #7fb0f5;
+  --good: #6fcf97;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .28);
+  --radius: 14px;
+  --maxw: 68rem;
+}
+
+:root[data-theme="light"] {
+  --bg: #f5f7fa;
+  --bg-2: #eef2f7;
+  --card: #ffffff;
+  --card-2: #f7f9fc;
+  --rule: #dfe5ee;
+  --ink: #10203a;
+  --body: #3c4a61;
+  --muted: #667791;
+  --accent: #a86b12;
+  --accent-ink: #fff6e6;
+  --link: #1d5fbf;
+  --good: #1c7a45;
+  --shadow: 0 1px 2px rgba(16, 32, 58, .06), 0 8px 24px rgba(16, 32, 58, .08);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Deliberately NO overflow-x here: an overflow value on an ancestor turns it
+   into a scroll container and silently breaks the sticky header. Horizontal
+   overflow is prevented at source instead - see .nav min-width and the
+   min() on table min-width. */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--body);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+
+h1, h2, h3 { color: var(--ink); line-height: 1.18; letter-spacing: -.02em; margin: 0; }
+h1 { font-size: clamp(2rem, 5.5vw, 3.1rem); font-weight: 800; }
+h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 750; margin: 2.6rem 0 .9rem; }
+h3 { font-size: 1.12rem; font-weight: 700; margin: 1.6rem 0 .45rem; }
+p { margin: .85rem 0; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:hover { text-decoration: underline; }
+strong { color: var(--ink); }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9em; background: var(--card-2); border: 1px solid var(--rule);
+  border-radius: 5px; padding: .08em .38em;
+}
+
+/* ── Skip link ─────────────────────────────────────────────────────────── */
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--accent); color: var(--accent-ink);
+  padding: .6rem 1rem; border-radius: 0 0 8px 0; font-weight: 700;
+}
+.skip:focus { left: 0; }
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+.site-head {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.site-head .wrap {
+  display: flex; align-items: center; gap: 1rem;
+  min-height: 60px; flex-wrap: wrap;
+}
+.brand {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-weight: 800; color: var(--ink); text-decoration: none; letter-spacing: -.02em;
+}
+.brand:hover { text-decoration: none; }
+.brand svg { flex: none; }
+/* min-width:0 is load-bearing: as a flex item the nav defaults to min-width:auto,
+   which makes it refuse to shrink below its content and push the whole document
+   wider than the viewport on a phone. */
+.nav {
+  display: flex; gap: .25rem; margin-left: auto; align-items: center;
+  flex-wrap: wrap; min-width: 0; justify-content: flex-end;
+}
+.nav a, .btn-ghost {
+  color: var(--body); text-decoration: none; font-size: .93rem; font-weight: 600;
+  padding: .4rem .7rem; border-radius: 8px; border: 0; background: none;
+  cursor: pointer; font-family: inherit;
+}
+.nav a:hover, .btn-ghost:hover { background: var(--card); color: var(--ink); text-decoration: none; }
+.nav a[aria-current="page"] { color: var(--accent); }
+
+/* ── Buttons ───────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .62rem 1.1rem; border-radius: 10px; font-weight: 700; font-size: .95rem;
+  text-decoration: none; border: 1px solid transparent; cursor: pointer;
+  font-family: inherit;
+}
+.btn:hover { text-decoration: none; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-outline { border-color: var(--rule); color: var(--ink); background: var(--card); }
+.btn-outline:hover { border-color: var(--accent); }
+.btn[aria-disabled="true"] {
+  opacity: .58; cursor: default; pointer-events: none;
+  background: var(--card); color: var(--muted); border-color: var(--rule);
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+.hero { padding: 3.4rem 0 2.2rem; border-bottom: 1px solid var(--rule); }
+.hero p.lede { font-size: 1.14rem; color: var(--body); max-width: 46rem; }
+.eyebrow {
+  display: inline-block; font-size: .78rem; font-weight: 800; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: .7rem;
+}
+.hero-cta { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+.hero-shot { margin: 2.2rem 0 0; }
+.hero-shot img {
+  width: 100%; height: auto; display: block; border-radius: var(--radius);
+  border: 1px solid var(--rule); box-shadow: var(--shadow);
+}
+.hero-shot figcaption { color: var(--muted); font-size: .87rem; margin-top: .6rem; }
+
+/* ── Language pills ────────────────────────────────────────────────────── */
+.pills { display: flex; flex-wrap: wrap; gap: .45rem; padding: 0; margin: 1.4rem 0 0; list-style: none; }
+.pill {
+  font-size: .84rem; font-weight: 700; padding: .28rem .72rem; border-radius: 999px;
+  background: var(--card); border: 1px solid var(--rule); color: var(--body);
+}
+.pill.is-primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+
+/* ── Stat strip ────────────────────────────────────────────────────────── */
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+  border-radius: var(--radius); overflow: hidden; margin: 2.2rem 0 0;
+}
+.stat { background: var(--card); padding: 1.1rem 1.2rem; }
+.stat b { display: block; color: var(--ink); font-size: 1.55rem; line-height: 1.1; letter-spacing: -.02em; }
+.stat span { font-size: .84rem; color: var(--muted); }
+
+/* ── Cards / project grid ──────────────────────────────────────────────── */
+.grid {
+  display: grid; gap: 1.1rem; margin: 1.4rem 0 0;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+}
+.card {
+  background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 1.2rem 1.3rem; box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+}
+.card h3 { margin-top: 0; }
+.card p { color: var(--body); font-size: .95rem; }
+.card .card-foot { margin-top: auto; padding-top: .9rem; }
+a.card { text-decoration: none; color: inherit; }
+a.card:hover { border-color: var(--accent); text-decoration: none; }
+a.card:hover h3 { color: var(--accent); }
+
+.tag {
+  display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: .05em;
+  text-transform: uppercase; padding: .2rem .5rem; border-radius: 5px;
+  background: color-mix(in srgb, var(--good) 18%, transparent);
+  color: var(--good); border: 1px solid color-mix(in srgb, var(--good) 35%, transparent);
+}
+.tag.is-muted {
+  background: var(--card-2); color: var(--muted); border-color: var(--rule);
+}
+
+/* ── Prose sections ────────────────────────────────────────────────────── */
+main { padding-bottom: 4rem; }
+.prose { max-width: 44rem; }
+.prose ul, .prose ol { padding-left: 1.3rem; }
+.prose li { margin: .35rem 0; }
+.prose li::marker { color: var(--accent); }
+
+.callout {
+  border-left: 3px solid var(--accent); background: var(--card);
+  padding: .9rem 1.1rem; border-radius: 0 10px 10px 0; margin: 1.4rem 0;
+}
+.callout p:first-child { margin-top: 0; }
+.callout p:last-child { margin-bottom: 0; }
+
+/* ── Tables ────────────────────────────────────────────────────────────── */
+.tablewrap { overflow-x: auto; margin: 1.2rem 0; }
+/* min() so a narrow phone never gets a table wider than the screen — the
+   .tablewrap scrolls it instead of the page scrolling. */
+table { border-collapse: collapse; width: 100%; min-width: min(28rem, 100%); font-size: .93rem; }
+th, td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { color: var(--ink); font-weight: 700; white-space: nowrap; }
+
+/* ── Gallery + lightbox ────────────────────────────────────────────────── */
+.gallery {
+  display: grid; gap: .9rem; margin: 1.3rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+}
+.shot {
+  display: block; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--rule); background: var(--card); line-height: 0;
+}
+/* Thumbnails are a mix of 9:16 phone shots and 16:9 board captures. Cropping
+   them to one ratio keeps the grid even; the lightbox shows the full image. */
+.shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.shot:hover { border-color: var(--accent); }
+.shot figcaption {
+  line-height: 1.4; font-size: .8rem; color: var(--muted);
+  padding: .5rem .6rem; background: var(--card);
+}
+
+/* The lightbox is progressive enhancement: with JS off every .shot is a plain
+   link straight to the full image, which still works. */
+.lightbox {
+  position: fixed; inset: 0; z-index: 90; display: none;
+  background: rgba(4, 9, 17, .92); padding: 1.5rem;
+  align-items: center; justify-content: center;
+}
+.lightbox[open], .lightbox.is-open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 84vh; border-radius: 10px; }
+.lightbox .lb-close {
+  position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; line-height: 1;
+  background: var(--card); color: var(--ink); border: 1px solid var(--rule);
+  border-radius: 8px; padding: .35rem .7rem; cursor: pointer;
+}
+.lightbox .lb-cap {
+  position: absolute; bottom: 1rem; left: 0; right: 0; text-align: center;
+  color: #cfe; font-size: .9rem; padding: 0 1.5rem;
+}
+
+/* ── About overlay ─────────────────────────────────────────────────────── */
+dialog.about {
+  border: 1px solid var(--rule); border-radius: var(--radius); padding: 0;
+  background: var(--card); color: var(--body);
+  max-width: 34rem; width: calc(100% - 2rem); box-shadow: var(--shadow);
+}
+dialog.about::backdrop { background: rgba(4, 9, 17, .72); }
+.about-in { padding: 1.5rem 1.6rem; }
+.about-in h2 { margin-top: 0; }
+.about-head { display: flex; gap: 1rem; align-items: center; }
+.about-head img { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 2px solid var(--rule); }
+.about dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem .9rem; margin: 1.1rem 0 0; font-size: .93rem; }
+.about dt { color: var(--muted); }
+.about dd { margin: 0; color: var(--ink); }
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+.site-foot {
+  border-top: 1px solid var(--rule); padding: 2rem 0 3rem;
+  color: var(--muted); font-size: .9rem;
+}
+.foot-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+.foot-links a { color: var(--body); text-decoration: none; }
+.foot-links a:hover { color: var(--accent); }
+
+/* ── Breadcrumb ────────────────────────────────────────────────────────── */
+.crumb { font-size: .87rem; color: var(--muted); padding: 1.3rem 0 0; }
+.crumb a { color: var(--muted); text-decoration: none; }
+.crumb a:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .hero { padding: 2.2rem 0 1.6rem; }
+  .nav a, .btn-ghost { padding: .35rem .5rem; font-size: .88rem; }
+}

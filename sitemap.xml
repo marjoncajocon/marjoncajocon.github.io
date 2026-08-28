@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://marjoncajocon.github.io/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/engine/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/llm-project/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/blog/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/chess-ta/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/dama-ta/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/brazilian/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/international/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/russian/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/english/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/turkish/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/blog/nnue-for-checkers/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/blog/how-strong-is-the-engine/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+</urlset>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How strong is the engine, and how would you know? — Marjon Cajocon</title>
+<meta name="description" content="Measuring board-game engine strength honestly: what self-play tells you, what it hides, and why a gated match is the only number worth trusting.">
+<link rel="canonical" href="https://marjoncajocon.github.io/blog/how-strong-is-the-engine/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marjon Cajocon">
+<meta property="og:title" content="How strong is the engine, and how would you know? — Marjon Cajocon">
+<meta property="og:description" content="Measuring board-game engine strength honestly: what self-play tells you, what it hides, and why a gated match is the only number worth trusting.">
+<meta property="og:url" content="https://marjoncajocon.github.io/blog/how-strong-is-the-engine/">
+<meta property="og:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How strong is the engine, and how would you know? — Marjon Cajocon">
+<meta name="twitter:description" content="Measuring board-game engine strength honestly: what self-play tells you, what it hides, and why a gated match is the only number worth trusting.">
+<meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "How strong is the engine, and how would you know?", "description": "Measuring board-game engine strength honestly: what self-play tells you, what it hides, and why a gated match is the only number worth trusting.", "datePublished": "2026-08-28", "dateModified": "2026-08-28", "author": {"@type": "Person", "name": "Marjon Cajocon"}, "mainEntityOfPage": "https://marjoncajocon.github.io/blog/how-strong-is-the-engine/"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="1" y="13" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/></svg> Marjon Cajocon</a>
+<nav class="nav" aria-label="Main">
+<a href="/#apps">Apps</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM</a>
+<a href="/blog/" aria-current="page">Writing</a>
+<button class="btn-ghost" id="aboutBtn" type="button">About me</button>
+<button class="btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark">&#9681;</button>
+</nav></div></header>
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="/">Home</a> &rsaquo; <a href="/blog/">Writing</a> &rsaquo; How strong is the engine, and how would you know?</p>
+<article class="prose">
+<h1 style="margin-top:1.2rem">How strong is the engine, and how would you know?</h1>
+<p style="color:var(--muted)"><time datetime="2026-08-28">2026-08-28</time> · Marjon Cajocon</p>
+
+<p>Every game app claims a strong AI. Almost none says what that means. Here is how
+strength is actually measured, and what the numbers are worth.</p>
+
+<h2>Self-play is a trap</h2>
+<p>The obvious test is to have a new version play the old one. Do that and you will find
+your engine improving forever, because both sides share the same blind spots. An engine
+that misunderstands a certain endgame will keep misunderstanding it, and both versions
+will walk into it equally often. The score says nothing.</p>
+<p>Self-play is still how training data is generated — you need millions of labelled
+positions and there is no other source. But generating data and measuring strength are
+different jobs, and conflating them is the classic mistake.</p>
+
+<h2>What a gate actually is</h2>
+<p>A gate is a match, played under fixed conditions, that a candidate must win before it
+ships. Same time control, same opening set, both colours, enough games that the result
+is not noise.</p>
+<p>The important part is that <em>it is allowed to fail</em>. A gate that always passes is
+decoration. In this project several trained networks were rejected by their gate and never
+shipped — one variant still runs its hand-crafted evaluation for exactly that reason. That
+is the gate working.</p>
+
+<h2>Why depth is a bad advertisement</h2>
+<p>"Searches 20 ply deep" sounds impressive and means very little. Depth depends entirely
+on how aggressively the search prunes, and an engine that prunes carelessly reaches great
+depths while missing things a shallower, more careful search would find. Two engines
+reporting the same depth can be hundreds of Elo apart.</p>
+
+<h2>What difficulty tiers really are</h2>
+<p>A difficulty setting is not a weaker engine. It is the same engine, deliberately
+constrained — less time, less depth, and at the lower tiers a chance of choosing a move
+that is good rather than best.</p>
+<p>That last part matters for a game people actually enjoy. An engine made weak purely by
+reducing depth plays strangely: excellent for a while, then suddenly blind. Adding
+controlled imprecision instead produces an opponent that plays plausibly and makes the
+kind of mistakes a human might, which is what a beginner tier is for.</p>
+
+<h2>The honest summary</h2>
+<p>The engines here are strong enough that most players will not beat the top tiers, and
+the tiers below exist so that is not the only experience on offer. Precise Elo figures
+across draughts variants are hard to state meaningfully — there is no common rating pool
+to anchor to, the way chess has. Claiming a specific number would be inventing one.</p>
+
+<p style="margin-top:2.4rem"><a href="/#apps">See the apps these engines ship in &rarr;</a></p>
+</article>
+</div></main><footer class="site-foot"><div class="wrap">
+<div class="foot-links">
+<a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/dama-ta/">Dama Ta!</a>
+<a href="/projects/brazilian/">Brazilian Checkers</a>
+<a href="/projects/international/">International Draughts</a>
+<a href="/projects/russian/">Russian Checkers</a>
+<a href="/projects/english/">English Draughts</a>
+<a href="/projects/turkish/">Turkish Draughts</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM engine</a>
+<a href="/blog/">Writing</a>
+</div>
+<p>&copy; 2026 Marjon Cajocon · published as MMC Solo Dev. Board-game engines in C, apps in Flutter.</p>
+</div></footer>
+<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><div class="about-in">
+<div class="about-head">
+  <img src="/res/profile.jpg" alt="" width="68" height="68">
+  <div><h2 id="aboutTitle" style="margin:0">Marjon Cajocon</h2>
+  <p style="margin:.2rem 0 0;color:var(--muted)">Software engineer · Talibon, Bohol, Philippines</p></div>
+</div>
+<p>I build game engines in C and the apps that ship them. Seven board-game
+engines, six of them running NNUE neural networks I trained myself, plus a
+from-scratch LLM engine written in dependency-free C.</p>
+<dl>
+  <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
+  <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
+  <dt>Certification</dt><dd>EDP Specialist (Civil Service, passed above the 80% bar)</dd>
+  <dt>Published</dt><dd>Five apps live on Google Play, more in testing</dd>
+  <dt>Contact</dt><dd><a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></dd>
+  <dt>Code</dt><dd><a href="https://github.com/marjoncajocon" rel="noopener">github.com/marjoncajocon</a></dd>
+</dl>
+<p style="margin-top:1.2rem"><button class="btn btn-outline" id="aboutClose" type="button">Close</button></p>
+</div></dialog>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

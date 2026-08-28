@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing — notes on NNUE, engine strength and board-game AI</title>
+<meta name="description" content="Technical write-ups on NNUE neural networks for checkers and chess, and on measuring board-game engine strength honestly.">
+<link rel="canonical" href="https://marjoncajocon.github.io/blog/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marjon Cajocon">
+<meta property="og:title" content="Writing — notes on NNUE, engine strength and board-game AI">
+<meta property="og:description" content="Technical write-ups on NNUE neural networks for checkers and chess, and on measuring board-game engine strength honestly.">
+<meta property="og:url" content="https://marjoncajocon.github.io/blog/">
+<meta property="og:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Writing — notes on NNUE, engine strength and board-game AI">
+<meta name="twitter:description" content="Technical write-ups on NNUE neural networks for checkers and chess, and on measuring board-game engine strength honestly.">
+<meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="1" y="13" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/></svg> Marjon Cajocon</a>
+<nav class="nav" aria-label="Main">
+<a href="/#apps">Apps</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM</a>
+<a href="/blog/" aria-current="page">Writing</a>
+<button class="btn-ghost" id="aboutBtn" type="button">About me</button>
+<button class="btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark">&#9681;</button>
+</nav></div></header>
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="/">Home</a> &rsaquo; Writing</p>
+<section class="hero" style="border:0;padding-bottom:1rem">
+<h1>Writing</h1>
+<p class="lede">Notes on building board-game engines — how the neural networks work, and
+how strength is actually measured.</p>
+</section>
+<div class="grid"><a class="card" href="/blog/nnue-for-checkers/">
+<h3>How NNUE works for checkers</h3><p>NNUE transformed computer chess. Here is what it takes to apply the same efficiently-updatable network architecture to draughts, and why each variant needs its own net.</p>
+<div class="card-foot"><span style="color:var(--muted);font-size:.83rem">2026-08-28</span></div></a><a class="card" href="/blog/how-strong-is-the-engine/">
+<h3>How strong is the engine, and how would you know?</h3><p>Measuring board-game engine strength honestly: what self-play tells you, what it hides, and why a gated match is the only number worth trusting.</p>
+<div class="card-foot"><span style="color:var(--muted);font-size:.83rem">2026-08-28</span></div></a></div>
+</div></main><footer class="site-foot"><div class="wrap">
+<div class="foot-links">
+<a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/dama-ta/">Dama Ta!</a>
+<a href="/projects/brazilian/">Brazilian Checkers</a>
+<a href="/projects/international/">International Draughts</a>
+<a href="/projects/russian/">Russian Checkers</a>
+<a href="/projects/english/">English Draughts</a>
+<a href="/projects/turkish/">Turkish Draughts</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM engine</a>
+<a href="/blog/">Writing</a>
+</div>
+<p>&copy; 2026 Marjon Cajocon · published as MMC Solo Dev. Board-game engines in C, apps in Flutter.</p>
+</div></footer>
+<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><div class="about-in">
+<div class="about-head">
+  <img src="/res/profile.jpg" alt="" width="68" height="68">
+  <div><h2 id="aboutTitle" style="margin:0">Marjon Cajocon</h2>
+  <p style="margin:.2rem 0 0;color:var(--muted)">Software engineer · Talibon, Bohol, Philippines</p></div>
+</div>
+<p>I build game engines in C and the apps that ship them. Seven board-game
+engines, six of them running NNUE neural networks I trained myself, plus a
+from-scratch LLM engine written in dependency-free C.</p>
+<dl>
+  <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
+  <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
+  <dt>Certification</dt><dd>EDP Specialist (Civil Service, passed above the 80% bar)</dd>
+  <dt>Published</dt><dd>Five apps live on Google Play, more in testing</dd>
+  <dt>Contact</dt><dd><a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></dd>
+  <dt>Code</dt><dd><a href="https://github.com/marjoncajocon" rel="noopener">github.com/marjoncajocon</a></dd>
+</dl>
+<p style="margin-top:1.2rem"><button class="btn btn-outline" id="aboutClose" type="button">Close</button></p>
+</div></dialog>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

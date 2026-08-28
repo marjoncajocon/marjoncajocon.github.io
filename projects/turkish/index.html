@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turkish Draughts — orthogonal 8×8 draughts engine in C</title>
+<meta name="description" content="Turkish draughts on all 64 squares with orthogonal movement, played offline against a hand-written engine in C with a 3D board and analysis tools.">
+<link rel="canonical" href="https://marjoncajocon.github.io/projects/turkish/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marjon Cajocon">
+<meta property="og:title" content="Turkish Draughts — orthogonal 8×8 draughts engine in C">
+<meta property="og:description" content="Turkish draughts on all 64 squares with orthogonal movement, played offline against a hand-written engine in C with a 3D board and analysis tools.">
+<meta property="og:url" content="https://marjoncajocon.github.io/projects/turkish/">
+<meta property="og:image" content="https://marjoncajocon.github.io/assets/img/turkish/board3d.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Turkish Draughts — orthogonal 8×8 draughts engine in C">
+<meta name="twitter:description" content="Turkish draughts on all 64 squares with orthogonal movement, played offline against a hand-written engine in C with a 3D board and analysis tools.">
+<meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/turkish/board3d.png">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Turkish Draughts", "applicationCategory": "GameApplication", "operatingSystem": "Android", "description": "Turkish draughts on all 64 squares with orthogonal movement, played offline against a hand-written engine in C with a 3D board and analysis tools.", "author": {"@type": "Person", "name": "Marjon Cajocon"}, "publisher": {"@type": "Organization", "name": "MMC Solo Dev"}, "url": "https://marjoncajocon.github.io/projects/turkish/", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="1" y="13" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/></svg> Marjon Cajocon</a>
+<nav class="nav" aria-label="Main">
+<a href="/#apps" aria-current="page">Apps</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM</a>
+<a href="/blog/">Writing</a>
+<button class="btn-ghost" id="aboutBtn" type="button">About me</button>
+<button class="btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark">&#9681;</button>
+</nav></div></header>
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="/">Home</a> &rsaquo; <a href="/#apps">Apps</a> &rsaquo; Turkish Draughts</p>
+<section class="hero" style="border:0;padding-bottom:1rem">
+  <span class="eyebrow">Turkish draughts</span>
+  <h1>Turkish Draughts</h1>
+  <p class="lede">Orthogonal movement on all 64 squares — a different game entirely.</p>
+  <p><span class="tag is-muted">Hand-crafted evaluation</span></p>
+  <div class="hero-cta"><a class="btn" aria-disabled="true" href="#">Coming to Google Play</a><a class="btn btn-outline" href="#screens">See the screens</a></div>
+</section>
+
+<div class="prose">
+<h2>The engine</h2>
+<p>The engine is written in C with bitboards and an alpha-beta search, and evaluates positions with a <strong>hand-crafted evaluation function</strong>. Turkish draughts uses all 64 squares with orthogonal movement, so none of the diagonal-board network work transfers to it — an NNUE net for this variant is still in training and is not in the shipped build.</p>
+<h2>The rules of this variant</h2>
+<p>Turkish draughts is the outlier. Every one of the 64 squares is playable, men move and capture sideways and forwards rather than diagonally, and kings slide orthogonally any distance. None of the diagonal-board work transfers.</p>
+<h2>What you get</h2>
+<ul>
+<li>Play offline against a neural-network engine — no account, no connection</li><li>A real 3D board rendered with three.js, alongside the classic 2D board</li><li>Analysis board with an evaluation bar and best-move hints</li><li>Game review: step back through a finished game move by move</li><li>Custom position setup, pass &amp; play on one device, and AI vs AI</li><li>Board and piece themes, and a rules panel for the variant</li>
+</ul>
+</div>
+
+<h2 id="screens">Screens</h2>
+<p style="color:var(--muted);max-width:44rem">Click any image to view it full size. The 3D
+shots are the real board renderer, captured from the same page the app ships.</p>
+<div class="gallery">
+<figure style="margin:0"><a class="shot" href="/assets/img/turkish/board3d.png" data-cap="The 3D board"><img src="/assets/img/turkish/board3d.png" alt="Turkish draughts 3D board with orthogonal movement" loading="lazy" width="800" height="600"></a><figcaption>The 3D board</figcaption></figure>
+<figure style="margin:0"><a class="shot" href="/assets/img/turkish/board3d_wide.png" data-cap="3D board, wide layout"><img src="/assets/img/turkish/board3d_wide.png" alt="Turkish draughts 3D board on a wide screen" loading="lazy" width="800" height="600"></a><figcaption>3D board, wide layout</figcaption></figure>
+</div>
+
+<div class="prose">
+<p style="margin-top:2rem"><a href="/projects/engine/">How the engine and its training pipeline work</a></p>
+</div>
+</div></main><footer class="site-foot"><div class="wrap">
+<div class="foot-links">
+<a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/dama-ta/">Dama Ta!</a>
+<a href="/projects/brazilian/">Brazilian Checkers</a>
+<a href="/projects/international/">International Draughts</a>
+<a href="/projects/russian/">Russian Checkers</a>
+<a href="/projects/english/">English Draughts</a>
+<a href="/projects/turkish/">Turkish Draughts</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM engine</a>
+<a href="/blog/">Writing</a>
+</div>
+<p>&copy; 2026 Marjon Cajocon · published as MMC Solo Dev. Board-game engines in C, apps in Flutter.</p>
+</div></footer>
+<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><div class="about-in">
+<div class="about-head">
+  <img src="/res/profile.jpg" alt="" width="68" height="68">
+  <div><h2 id="aboutTitle" style="margin:0">Marjon Cajocon</h2>
+  <p style="margin:.2rem 0 0;color:var(--muted)">Software engineer · Talibon, Bohol, Philippines</p></div>
+</div>
+<p>I build game engines in C and the apps that ship them. Seven board-game
+engines, six of them running NNUE neural networks I trained myself, plus a
+from-scratch LLM engine written in dependency-free C.</p>
+<dl>
+  <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
+  <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
+  <dt>Certification</dt><dd>EDP Specialist (Civil Service, passed above the 80% bar)</dd>
+  <dt>Published</dt><dd>Five apps live on Google Play, more in testing</dd>
+  <dt>Contact</dt><dd><a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></dd>
+  <dt>Code</dt><dd><a href="https://github.com/marjoncajocon" rel="noopener">github.com/marjoncajocon</a></dd>
+</dl>
+<p style="margin-top:1.2rem"><button class="btn btn-outline" id="aboutClose" type="button">Close</button></p>
+</div></dialog>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

@@ -1,281 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marjon Cajocon · Software Engineer</title>
-  <!-- Tailwind + Font Awesome + Google Font (Inter) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <style>
-    * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease; }
-    body { transition: background 0.2s, color 0.2s; }
-    .card-shadow { box-shadow: 0 12px 30px rgba(0,0,0,0.05), 0 4px 10px rgba(0,0,0,0.02); }
-    .dark .card-shadow { box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 4px 10px rgba(0,0,0,0.3); }
-    .border-soft { border-color: #e2e8f0; }
-    .dark .border-soft { border-color: #334155; }
-    .bg-soft-card { background: rgba(255,255,255,0.65); backdrop-filter: blur(2px); }
-    .dark .bg-soft-card { background: rgba(20,24,34,0.75); backdrop-filter: blur(2px); }
-    .bg-card-light { background: #ffffff; }
-    .dark .bg-card-light { background: #1e2533; }
-    .bg-card-lighter { background: #f8fafc; }
-    .dark .bg-card-lighter { background: #161c28; }
-    .text-main { color: #0f172a; }
-    .dark .text-main { color: #f1f5f9; }
-    .text-secondary { color: #334155; }
-    .dark .text-secondary { color: #cbd5e1; }
-    .text-muted { color: #64748b; }
-    .dark .text-muted { color: #94a3b8; }
-    .text-muted-light { color: #94a3b8; }
-    .dark .text-muted-light { color: #64748b; }
-    .badge-light { background: #f1f5f9; color: #0f172a; border: 1px solid #e2e8f0; }
-    .dark .badge-light { background: #2d3748; color: #e2e8f0; border-color: #475569; }
-    .badge-indigo { background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; }
-    .dark .badge-indigo { background: #1e1b4b; color: #a5b4fc; border-color: #3730a3; }
-    .badge-emerald { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
-    .dark .badge-emerald { background: #042f2e; color: #6ee7b7; border-color: #065f46; }
-    .badge-amber { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
-    .dark .badge-amber { background: #2d1f00; color: #fcd34d; border-color: #78350f; }
-    .lang-pill { background: #f1f5f9; color: #0f172a; border: 1px solid #e2e8f0; }
-    .dark .lang-pill { background: #2d3748; color: #e2e8f0; border-color: #475569; }
-    .lang-pill.go { background: #00add8; color: white; border-color: #008bb5; }
-    .dark .lang-pill.go { background: #008bb5; border-color: #006a8a; }
-    .lang-pill.ts { background: #3178c6; color: white; border-color: #1f5a9e; }
-    .dark .lang-pill.ts { background: #1f5a9e; border-color: #15417a; }
-    .work-step-badge { background: #1e293b; color: white; font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.8rem; border-radius: 30px; letter-spacing: 0.3px; }
-    .dark .work-step-badge { background: #334155; }
-    .step-card { background: #f8fafc; border: 1px solid #e2e8f0; }
-    .dark .step-card { background: #1a212e; border-color: #334155; }
-    .step-current { background: #eef2ff; border: 2px solid #818cf8; }
-    .dark .step-current { background: #1e1b4b; border-color: #6366f1; }
-    .theme-toggle { cursor: pointer; background: #f1f5f9; border: 1px solid #e2e8f0; }
-    .dark .theme-toggle { background: #2d3748; border-color: #475569; }
-    .theme-toggle i { color: #4338ca; }
-    .dark .theme-toggle i { color: #fbbf24; }
-    .bg-gradient-subtle { background: linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 100%); }
-    .dark .bg-gradient-subtle { background: linear-gradient(145deg, #0f172a 0%, #1a212e 100%); }
-    .border-white\/50 { border-color: rgba(255,255,255,0.4); }
-    .dark .border-white\/50 { border-color: rgba(255,255,255,0.05); }
-    .shadow-soft { box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
-    .dark .shadow-soft { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-    .pill-js { background: #f1f5f9; border: 1px solid #e2e8f0; }
-    .dark .pill-js { background: #1e2533; border-color: #334155; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marjon Cajocon — strong checkers and chess engines powered by NNUE neural networks</title>
+<meta name="description" content="Offline checkers and chess apps with hand-written NNUE neural-network engines in C. Six draughts variants and chess, trained from self-play, playing strong on a phone.">
+<link rel="canonical" href="https://marjoncajocon.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marjon Cajocon">
+<meta property="og:title" content="Marjon Cajocon — strong checkers and chess engines powered by NNUE neural networks">
+<meta property="og:description" content="Offline checkers and chess apps with hand-written NNUE neural-network engines in C. Six draughts variants and chess, trained from self-play, playing strong on a phone.">
+<meta property="og:url" content="https://marjoncajocon.github.io/">
+<meta property="og:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Marjon Cajocon — strong checkers and chess engines powered by NNUE neural networks">
+<meta name="twitter:description" content="Offline checkers and chess apps with hand-written NNUE neural-network engines in C. Six draughts variants and chess, trained from self-play, playing strong on a phone.">
+<meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Marjon Cajocon", "url": "https://marjoncajocon.github.io/", "email": "marjoncajocon08@gmail.com", "sameAs": ["https://github.com/marjoncajocon"], "jobTitle": "Software engineer", "knowsAbout": ["C", "Go", "Dart", "Flutter", "Python", "TypeScript", "NNUE", "neural networks", "game engines", "draughts", "chess"]}</script>
 </head>
-<body class="bg-gradient-subtle antialiased py-8 px-4 md:px-8 transition-colors duration-300">
-
-  <!-- main container -->
-  <div class="max-w-5xl mx-auto bg-soft-card rounded-3xl card-shadow p-6 md:p-10 border border-white/50 shadow-soft transition-colors duration-300">
-
-    <!-- header -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-soft pb-6 mb-6">
-      <div>
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-main">Marjon Cajocon</h1>
-        <div class="flex items-center gap-2 mt-1 flex-wrap">
-          <span class="badge-indigo text-sm font-semibold px-3 py-0.5 rounded-full">Software Engineer</span>
-          <span class="badge-emerald text-sm font-semibold px-3 py-0.5 rounded-full">Developer</span>
-        </div>
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-secondary mt-2">
-          <span><i class="fas fa-map-pin mr-1 text-indigo-500"></i> Talibon, Bohol</span>
-          <span><i class="fas fa-phone-alt mr-1 text-indigo-500"></i> 09636382382</span>
-          <span><i class="fas fa-envelope mr-1 text-indigo-500"></i> marjoncajocon@myyahoo.com</span>
-          <span><i class="fas fa-envelope mr-1 text-indigo-500"></i> marjoncajocon08@gmail.com</span>
-        </div>
-      </div>
-      <div class="flex flex-wrap items-center gap-3 text-sm">
-        <span class="bg-card-light px-4 py-2 rounded-full border border-soft shadow-sm text-main"><i class="fas fa-calendar-alt mr-2 text-indigo-500"></i> Born: Mar 31, 1996</span>
-        <span class="bg-card-light px-4 py-2 rounded-full border border-soft shadow-sm text-main"><i class="fas fa-venus-mars mr-2 text-indigo-500"></i> Single</span>
-        <span class="bg-card-light px-4 py-2 rounded-full border border-soft shadow-sm text-main"><i class="fas fa-ruler-vertical mr-2 text-indigo-500"></i> 5'0" · 64 kg</span>
-        <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-all hover:scale-105" aria-label="Toggle theme">
-          <i class="fas fa-moon"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- grid: about + focus / quick stats -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div class="md:col-span-2 space-y-4">
-        <div class="bg-card-light p-5 rounded-2xl border border-soft shadow-sm">
-          <h2 class="text-sm font-semibold uppercase tracking-wider text-indigo-600 mb-1"><i class="fas fa-user mr-2"></i>About</h2>
-          <p class="text-secondary leading-relaxed">Born in Buug, Zamboanga Sibugay · raised in Trinidad, Bohol. <br> BSIT graduate (Trinidad, Bohol). <span class="font-medium">EDP Specialist</span> – passed with <span class="font-bold text-indigo-700">94%+</span> (CSC passing rate 80%).</p>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="badge-indigo text-xs px-3 py-1 rounded-full"><i class="fas fa-graduation-cap mr-1"></i> BSIT · Trinidad</span>
-            <span class="badge-emerald text-xs px-3 py-1 rounded-full"><i class="fas fa-certificate mr-1"></i> EDP Specialist · 94%+</span>
-            <span class="badge-amber text-xs px-3 py-1 rounded-full"><i class="fas fa-code-branch mr-1"></i> 60+ private repos</span>
-          </div>
-        </div>
-        <div class="bg-card-light p-5 rounded-2xl border border-soft shadow-sm">
-          <h2 class="text-sm font-semibold uppercase tracking-wider text-indigo-600 mb-2"><i class="fas fa-laptop-code mr-2"></i>Focus</h2>
-          <div class="flex flex-wrap gap-2">
-            <span class="lang-pill go px-4 py-1.5 rounded-full text-sm font-medium"><i class="fab fa-golang mr-1"></i> Go (Golang)</span>
-            <span class="lang-pill ts px-4 py-1.5 rounded-full text-sm font-medium"><i class="fab fa-typescript mr-1"></i> TypeScript</span>
-            <span class="lang-pill px-4 py-1.5 rounded-full text-sm font-medium"><i class="fab fa-js mr-1"></i> JavaScript</span>
-            <span class="lang-pill px-4 py-1.5 rounded-full text-sm font-medium"><i class="fab fa-python mr-1"></i> Python</span>
-            <span class="lang-pill px-4 py-1.5 rounded-full text-sm font-medium"><i class="fas fa-code mr-1"></i> C</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- right column: highlights -->
-      <div class="bg-card-light p-5 rounded-2xl border border-soft shadow-sm flex flex-col justify-between">
-        <div>
-          <h2 class="text-sm font-semibold uppercase tracking-wider text-indigo-600 mb-3"><i class="fas fa-bolt mr-2"></i>Highlights</h2>
-          <ul class="space-y-2 text-sm text-secondary">
-            <li class="flex items-center gap-2"><span class="w-2 h-2 bg-indigo-500 rounded-full"></span> <span class="font-medium">Work Step 7</span> (current / final)</li>
-            <li class="flex items-center gap-2"><span class="w-2 h-2 bg-indigo-500 rounded-full"></span> Full-stack · microservices · cloud</li>
-            <li class="flex items-center gap-2"><span class="w-2 h-2 bg-indigo-500 rounded-full"></span> 2015 – 2019 learning · 2019 – 2026 work</li>
-            <li class="flex items-center gap-2"><span class="w-2 h-2 bg-indigo-500 rounded-full"></span> 60+ private repositories</li>
-          </ul>
-        </div>
-        <div class="mt-3 pt-3 border-t border-soft text-xs text-muted flex justify-between">
-          <span><i class="far fa-calendar-alt mr-1"></i> 2015 – 2026</span>
-          <span><i class="fas fa-arrow-right mr-1"></i> learning → working</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== LEARNING + WORK PROGRESSION ===== -->
-    <div class="bg-card-light p-5 rounded-2xl border border-soft shadow-sm mb-6">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-indigo-600 mb-4 flex items-center gap-2"><i class="fas fa-road"></i> My Learning & Working Journey · 2015 – 2026</h2>
-
-      <!-- learning path -->
-      <div class="mb-6">
-        <div class="flex items-center gap-1 text-xs text-muted mb-1.5"><i class="fas fa-graduation-cap text-indigo-400 mr-1"></i> Learning path (2015–2019)</div>
-        <div class="flex flex-wrap items-center gap-2 p-3 bg-card-lighter rounded-xl border border-soft">
-          <span class="text-xs font-medium text-muted mr-1">Started</span>
-          <span class="bg-card-light px-3 py-1 rounded-full text-xs font-medium border border-soft shadow-sm text-main"><i class="fas fa-code mr-1"></i>C</span>
-          <i class="fas fa-arrow-right text-muted-light text-xs"></i>
-          <span class="bg-card-light px-3 py-1 rounded-full text-xs font-medium border border-soft shadow-sm text-main">HTML</span>
-          <i class="fas fa-arrow-right text-muted-light text-xs"></i>
-          <span class="bg-card-light px-3 py-1 rounded-full text-xs font-medium border border-soft shadow-sm text-main">CSS</span>
-          <i class="fas fa-arrow-right text-muted-light text-xs"></i>
-          <span class="bg-card-light px-3 py-1 rounded-full text-xs font-medium border border-soft shadow-sm text-main">VB</span>
-          <i class="fas fa-arrow-right text-muted-light text-xs"></i>
-          <span class="bg-card-light px-3 py-1 rounded-full text-xs font-medium border border-soft shadow-sm text-main">JS</span>
-          <i class="fas fa-arrow-right text-muted-light text-xs"></i>
-          <span class="bg-card-light px-3 py-1 rounded-full text-xs font-medium border border-soft shadow-sm text-main">C#</span>
-          <i class="fas fa-arrow-right text-muted-light text-xs"></i>
-          <span class="bg-card-light px-3 py-1 rounded-full text-xs font-medium border border-soft shadow-sm text-main">JavaScript</span>
-          <i class="fas fa-arrow-right text-muted-light text-xs"></i>
-          <span class="bg-card-light px-3 py-1 rounded-full text-xs font-medium border border-soft shadow-sm text-main">Java</span>
-          <i class="fas fa-arrow-right text-muted-light text-xs"></i>
-          <span class="badge-indigo px-3 py-1 rounded-full text-xs font-bold">PHP <span class="text-[10px] font-normal ml-1">(last)</span></span>
-        </div>
-      </div>
-
-      <!-- work progression -->
-      <div>
-        <div class="flex items-center gap-1 text-xs text-muted mb-1.5"><i class="fas fa-briefcase text-indigo-400 mr-1"></i> Work progression (2019–2026) · Step 1 → Current & Final</div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-          <div class="step-card p-3 rounded-xl flex flex-col items-start">
-            <span class="work-step-badge text-[10px]">Step 1</span>
-            <span class="text-xs mt-1 font-medium text-main">PHP · JS</span>
-            <span class="text-[10px] text-muted">2019</span>
-          </div>
-          <div class="step-card p-3 rounded-xl flex flex-col items-start">
-            <span class="work-step-badge">Step 3</span>
-            <span class="text-xs mt-1 font-medium text-main">PHP · JS</span>
-            <span class="text-[10px] text-muted">2020</span>
-          </div>
-          <div class="step-card p-3 rounded-xl flex flex-col items-start">
-            <span class="work-step-badge">Step 4</span>
-            <span class="text-xs mt-1 font-medium text-main">Python</span>
-            <span class="text-[10px] text-muted">2021</span>
-          </div>
-          <div class="step-card p-3 rounded-xl flex flex-col items-start">
-            <span class="work-step-badge">Step 5</span>
-            <span class="text-xs mt-1 font-medium text-main">Dart</span>
-            <span class="text-[10px] text-muted">2021-22</span>
-          </div>
-          <div class="step-card p-3 rounded-xl flex flex-col items-start">
-            <span class="work-step-badge">Step 6</span>
-            <span class="text-xs mt-1 font-medium text-main">TypeScript</span>
-            <span class="text-[10px] text-muted">2022-23</span>
-          </div>
-          <div class="step-current p-3 rounded-xl flex flex-col items-start col-span-2 md:col-span-1 lg:col-span-2">
-            <span class="work-step-badge bg-indigo-700 text-white">Step 7 · Current & Final</span>
-            <span class="text-sm font-bold mt-1 flex items-center gap-2 text-main"><i class="fab fa-golang text-indigo-600"></i> Go · TypeScript</span>
-            <span class="text-[10px] text-indigo-700">2024 – present · microservices · cloud</span>
-          </div>
-        </div>
-        <!-- JS pills -->
-        <div class="flex flex-wrap items-center gap-1 mt-3 text-xs text-muted border-t border-soft pt-3">
-          <i class="fas fa-code text-indigo-300 mr-1"></i> 
-          <span class="pill-js px-2 py-0.5 rounded-full">JS</span>
-          <span class="pill-js px-2 py-0.5 rounded-full">JS</span>
-          <span class="pill-js px-2 py-0.5 rounded-full">JS</span>
-          <span class="pill-js px-2 py-0.5 rounded-full">JS</span>
-          <span class="pill-js px-2 py-0.5 rounded-full">JS</span>
-          <span class="pill-js px-2 py-0.5 rounded-full">JS</span>
-          <span class="pill-js px-2 py-0.5 rounded-full">+ more</span>
-          <span class="text-[10px] ml-1 text-muted-light">(JS heavy stack)</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- footer cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-      <div class="bg-card-light p-4 rounded-xl border border-soft flex items-center gap-3 shadow-sm">
-        <i class="fab fa-github text-2xl text-main"></i>
-        <div>
-          <div id="ggit" class="text-sm font-semibold text-main">60+ private repos</div><div class="text-xs text-muted">Go · TypeScript · JS</div>
-        </div>
-      </div>
-      <div class="bg-card-light p-4 rounded-xl border border-soft flex items-center gap-3 shadow-sm">
-        <i class="fas fa-certificate text-2xl text-emerald-600"></i>
-        <div><div class="text-sm font-semibold text-main">EDP Specialist</div><div class="text-xs text-muted">94%+ · CSC 80% passer</div></div>
-      </div>
-      <div class="bg-card-light p-4 rounded-xl border border-soft flex items-center gap-3 shadow-sm">
-        <i class="fas fa-map-marker-alt text-2xl text-rose-500"></i>
-        <div><div class="text-sm font-semibold text-main">Talibon, Bohol</div><div class="text-xs text-muted">📍 Buug, ZS · Trinidad, Bohol</div></div>
-      </div>
-    </div>
-
-    <!-- footer -->
-    <div class="mt-6 text-center text-xs text-muted border-t border-soft pt-4 flex flex-wrap justify-center gap-4">
-      <span><i class="far fa-copyright mr-1"></i> 2026 Marjon Cajocon</span>
-      <span><i class="fas fa-bolt mr-1"></i> Go · TypeScript · full-stack</span>
-      <span><i class="fas fa-code mr-1"></i> 60+ repos · 7 work steps</span>
-    </div>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="1" y="13" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/></svg> Marjon Cajocon</a>
+<nav class="nav" aria-label="Main">
+<a href="/#apps">Apps</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM</a>
+<a href="/blog/">Writing</a>
+<button class="btn-ghost" id="aboutBtn" type="button">About me</button>
+<button class="btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark">&#9681;</button>
+</nav></div></header>
+<main id="main"><div class="wrap">
+<section class="hero">
+  <span class="eyebrow">Board-game engines in C</span>
+  <h1>Strong checkers and chess, powered by NNUE neural networks.</h1>
+  <p class="lede">I write board-game engines in C and ship them as offline mobile apps.
+  Six of them evaluate positions with an <strong>NNUE neural network</strong> — the same
+  efficiently-updatable architecture that transformed computer chess — trained from
+  self-play and small enough to run on a phone with no connection.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#apps">See the apps</a>
+    <a class="btn btn-outline" href="/projects/engine/">How the engine works</a>
   </div>
+  <ul class="pills">
+    <li class="pill is-primary">C</li><li class="pill">Go</li>
+    <li class="pill">Flutter / Dart</li><li class="pill">Python</li>
+    <li class="pill">TypeScript / JavaScript</li>
+  </ul>
+  <div class="stats">
+    <div class="stat"><b>7</b><span>engines written in C</span></div>
+    <div class="stat"><b>6</b><span>running NNUE nets</span></div>
+    <div class="stat"><b>5</b><span>live on Google Play</span></div>
+    <div class="stat"><b>100%</b><span>offline play</span></div>
+  </div>
+  <figure class="hero-shot">
+    <img src="/assets/img/hero_3d.png" width="2400" height="1200" fetchpriority="high"
+         alt="The Chess Ta! 3D board: chess pieces on a wooden table, rendered in 3D">
+    <figcaption>The 3D board in Chess&nbsp;Ta! — the same renderer runs in every app here.</figcaption>
+  </figure>
+</section>
 
-  <div class="max-w-5xl mx-auto text-[10px] text-muted-light mt-2 text-right px-2">inspired by learning/work journey 2015–2026 · C → PHP → Go/TS</div>
+<h2 id="apps">The apps</h2>
+<p style="color:var(--muted);max-width:44rem">Every one plays offline, has a 3D board and a
+classic 2D board, and ships its engine compiled in — nothing is evaluated on a server.</p>
+<div class="grid">
+<a class="card" href="/projects/chess-ta/">
+<h3>Chess Ta!</h3>
+<p>Offline chess with an NNUE engine, a real 3D board, and analysis tools.</p>
+<div class="card-foot"><span class="tag">NNUE</span> <span style="color:var(--muted);font-size:.83rem">· In testing</span></div>
+</a><a class="card" href="/projects/dama-ta/">
+<h3>Dama Ta!</h3>
+<p>Filipino dama with the strongest net in the family — a 512-wide NNUE.</p>
+<div class="card-foot"><span class="tag">NNUE</span> <span style="color:var(--muted);font-size:.83rem">· Live on Google Play</span></div>
+</a><a class="card" href="/projects/brazilian/">
+<h3>Brazilian Checkers</h3>
+<p>8×8 Brazilian rules with international capture logic, on a 256-wide NNUE.</p>
+<div class="card-foot"><span class="tag">NNUE</span> <span style="color:var(--muted);font-size:.83rem">· Live on Google Play</span></div>
+</a><a class="card" href="/projects/international/">
+<h3>International Draughts</h3>
+<p>The 10×10 game, 20 pieces a side, on a compact 32-wide net.</p>
+<div class="card-foot"><span class="tag">NNUE</span> <span style="color:var(--muted);font-size:.83rem">· Live on Google Play</span></div>
+</a><a class="card" href="/projects/russian/">
+<h3>Russian Checkers</h3>
+<p>Russian rules, including promotion mid-capture, on a 128-wide NNUE.</p>
+<div class="card-foot"><span class="tag">NNUE</span> <span style="color:var(--muted);font-size:.83rem">· Live on Google Play</span></div>
+</a><a class="card" href="/projects/english/">
+<h3>English Draughts</h3>
+<p>The classic American game — men capture forward only — on a 128-wide NNUE.</p>
+<div class="card-foot"><span class="tag">NNUE</span> <span style="color:var(--muted);font-size:.83rem">· Live on Google Play</span></div>
+</a><a class="card" href="/projects/turkish/">
+<h3>Turkish Draughts</h3>
+<p>Orthogonal movement on all 64 squares — a different game entirely.</p>
+<div class="card-foot"><span class="tag is-muted">Hand-crafted eval</span> <span style="color:var(--muted);font-size:.83rem">· In testing</span></div>
+</a>
+</div>
 
-  <script>
-    (function() {
-      const ggit = document.getElementById('ggit');
-      
-      ggit.addEventListener('click', () => {
-        location.href = 'https://github.com/marjoncajocon';
-      });
-      
-      const toggleBtn = document.getElementById('themeToggle');
-      const icon = toggleBtn.querySelector('i');
-      const stored = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      let isDark = stored ? stored === 'dark' : prefersDark;
+<h2>Why a neural network matters here</h2>
+<div class="prose">
+<p>Most checkers apps evaluate a position by counting material and adding a few
+hand-written bonuses. That is fast, and it is why they play the same predictable way
+every game.</p>
+<p>An <strong>NNUE</strong> — an efficiently-updatable neural network — replaces those
+hand-written rules with a small network trained on millions of self-play positions. It is
+built so that moving one piece updates only the part of the network that changed, which
+makes it cheap enough to call at every node of the search. That is what lets a phone play
+a genuinely strong game rather than a fast shallow one.</p>
+<p>Every net here was trained from scratch against its own variant. Rules differ enough
+between Brazilian, Russian, English, International, Filipino and Turkish draughts that a
+net trained on one is worthless on another — International alone needs a different board
+size and a different feature set.</p>
+<p><a href="/blog/nnue-for-checkers/">How NNUE works for checkers &rarr;</a></p>
+</div>
 
-      function applyTheme(dark) {
-        if (dark) {
-          document.documentElement.classList.add('dark');
-          icon.className = 'fas fa-sun';
-        } else {
-          document.documentElement.classList.remove('dark');
-          icon.className = 'fas fa-moon';
-        }
-        localStorage.setItem('theme', dark ? 'dark' : 'light');
-      }
+<h2>Other work</h2>
+<div class="grid">
+<a class="card" href="/projects/engine/">
+<h3>The engine &amp; training pipeline</h3>
+<p>The shared C core behind all seven games: bitboards, alpha-beta search, the Go NNUE
+trainer, self-play generation and endgame tablebases.</p>
+<div class="card-foot"><span class="tag">C · Go</span></div></a>
+<a class="card" href="/projects/llm-project/">
+<h3>Pure-C LLM engine</h3>
+<p>A language-model stack written from scratch in dependency-free C11 — training,
+inference, LoRA fine-tuning and a tool-using agent, with no framework underneath.</p>
+<div class="card-foot"><span class="tag">C · Python · Go</span></div></a>
+</div>
+</div></main><footer class="site-foot"><div class="wrap">
+<div class="foot-links">
+<a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/dama-ta/">Dama Ta!</a>
+<a href="/projects/brazilian/">Brazilian Checkers</a>
+<a href="/projects/international/">International Draughts</a>
+<a href="/projects/russian/">Russian Checkers</a>
+<a href="/projects/english/">English Draughts</a>
+<a href="/projects/turkish/">Turkish Draughts</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM engine</a>
+<a href="/blog/">Writing</a>
+</div>
+<p>&copy; 2026 Marjon Cajocon · published as MMC Solo Dev. Board-game engines in C, apps in Flutter.</p>
+</div></footer>
+<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><div class="about-in">
+<div class="about-head">
+  <img src="/res/profile.jpg" alt="" width="68" height="68">
+  <div><h2 id="aboutTitle" style="margin:0">Marjon Cajocon</h2>
+  <p style="margin:.2rem 0 0;color:var(--muted)">Software engineer · Talibon, Bohol, Philippines</p></div>
+</div>
+<p>I build game engines in C and the apps that ship them. Seven board-game
+engines, six of them running NNUE neural networks I trained myself, plus a
+from-scratch LLM engine written in dependency-free C.</p>
+<dl>
+  <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
+  <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
+  <dt>Certification</dt><dd>EDP Specialist (Civil Service, passed above the 80% bar)</dd>
+  <dt>Published</dt><dd>Five apps live on Google Play, more in testing</dd>
+  <dt>Contact</dt><dd><a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></dd>
+  <dt>Code</dt><dd><a href="https://github.com/marjoncajocon" rel="noopener">github.com/marjoncajocon</a></dd>
+</dl>
+<p style="margin-top:1.2rem"><button class="btn btn-outline" id="aboutClose" type="button">Close</button></p>
+</div></dialog>
 
-      applyTheme(isDark);
-
-      toggleBtn.addEventListener('click', function() {
-        isDark = !isDark;
-        applyTheme(isDark);
-      });
-    })();
-  </script>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
