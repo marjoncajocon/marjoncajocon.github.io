@@ -29,6 +29,19 @@ EMAIL = "marjoncajocon08@gmail.com"
 GITHUB = "https://github.com/marjoncajocon"
 
 PLAY = "https://play.google.com/store/apps/details?id="
+MSSTORE = "https://apps.microsoft.com/detail/"
+
+# Microsoft Store product IDs, read from Partner Center and each verified to
+# return HTTP 200 on apps.microsoft.com. Turkish is deliberately absent - it is
+# not published on either store yet.
+MS_IDS = {
+    "chess-ta": "9N7582TZQ33L",
+    "dama-ta": "9MWGN4MN1MVN",
+    "brazilian": "9NG6SJVHBFNV",
+    "english": "9P2GBP64LQ87",
+    "international": "9N76SL15014B",
+    "russian": "9MSR9TZGDB6X",
+}
 
 # ── Projects ────────────────────────────────────────────────────────────────
 # nnue: (hidden, features, extra) or None when the shipped net is a zero net.
@@ -274,11 +287,13 @@ ABOUT = f"""<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><di
 engines, six of them running NNUE neural networks I trained myself, plus a
 from-scratch LLM engine written in dependency-free C.</p>
 <dl>
+  <dt>Developer</dt><dd><strong>{PUBLISHER}</strong> — the name my apps ship under
+      on Google Play and the Microsoft Store</dd>
   <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
   <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
   <dt>Certification</dt><dd>EDP Specialist — Civil Service, rated <strong>94.65%</strong>
       <span style="color:var(--muted)">(80% to pass)</span></dd>
-  <dt>Published</dt><dd>Five apps live on Google Play, more in testing</dd>
+  <dt>Published</dt><dd>Six apps on the Microsoft Store, five on Google Play</dd>
   <dt>Contact</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd>
   <dt>Code</dt><dd><a href="{GITHUB}" rel="noopener">github.com/marjoncajocon</a></dd>
 </dl>
@@ -363,18 +378,32 @@ def project_page(p):
             'still in training and is not in the shipped build.</p>')
         tag = '<span class="tag is-muted">Hand-crafted evaluation</span>'
 
+    ms = MS_IDS.get(slug)
+    ctas = []
     if p["play"]:
-        cta = (f'<a class="btn btn-primary" href="{PLAY}{p["play"]}" rel="noopener">'
-               f'Get it on Google Play</a>')
-    else:
-        cta = '<a class="btn" aria-disabled="true" href="#">Coming to Google Play</a>'
+        ctas.append(f'<a class="btn btn-primary" href="{PLAY}{p["play"]}" rel="noopener">'
+                    f'Get it on Google Play</a>')
+    if ms:
+        # Primary when there is no Play listing, so the page always leads with a
+        # button that actually goes somewhere.
+        cls = "btn-primary" if not p["play"] else "btn-outline"
+        ctas.append(f'<a class="btn {cls}" href="{MSSTORE}{ms}" rel="noopener">'
+                    f'Get it on Microsoft Store</a>')
+    if not ctas:
+        ctas.append('<a class="btn" aria-disabled="true" href="#">Coming soon</a>')
+    cta = "".join(ctas)
 
     priv = (f' · <a href="{p["privacy"]}">Privacy policy</a>') if p["privacy"] else ""
 
+    oses = []
+    if p["play"]:
+        oses.append("Android")
+    if ms:
+        oses.append("Windows")
     ld = jsonld_block({
         "@context": "https://schema.org", "@type": "SoftwareApplication",
         "name": name, "applicationCategory": "GameApplication",
-        "operatingSystem": "Android", "description": p["desc"],
+        "operatingSystem": ", ".join(oses) or "Android", "description": p["desc"],
         "author": {"@type": "Person", "name": AUTHOR},
         "publisher": {"@type": "Organization", "name": PUBLISHER},
         "url": f"{SITE}/projects/{slug}/",
@@ -387,8 +416,8 @@ def project_page(p):
   <span class="eyebrow">{html.escape(p["kind"])}</span>
   <h1>{html.escape(name)}</h1>
   <p class="lede">{html.escape(p["tagline"])}</p>
-  <p>{tag}</p>
-  <div class="hero-cta">{cta}<a class="btn btn-outline" href="#screens">See the screens</a></div>
+  <p>{tag} <span class="tag is-muted">{PUBLISHER}</span></p>
+  <div class="hero-cta">{cta}</div>
 </section>
 
 <div class="prose">
@@ -421,11 +450,18 @@ def index_page():
     for p in PROJECTS:
         tag = ('<span class="tag">NNUE</span>' if p["nnue"]
                else '<span class="tag is-muted">Hand-crafted eval</span>')
-        live = "Live on Google Play" if p["play"] else "In testing"
+        # Say where each app can actually be installed from, rather than a vague
+        # "live" - the two stores do not carry the same set.
+        where = []
+        if p["play"]:
+            where.append("Google Play")
+        if MS_IDS.get(p["slug"]):
+            where.append("Microsoft Store")
+        avail = (" · ".join(where)) if where else "In testing"
         cards.append(f"""<a class="card" href="/projects/{p['slug']}/">
 <h3>{html.escape(p['name'])}</h3>
 <p>{html.escape(p['tagline'])}</p>
-<div class="card-foot">{tag} <span style="color:var(--muted);font-size:.83rem">· {live}</span></div>
+<div class="card-foot">{tag} <span style="color:var(--muted);font-size:.83rem">· {avail}</span></div>
 </a>""")
 
     ld = jsonld_block({
@@ -440,10 +476,11 @@ def index_page():
 <section class="hero">
   <span class="eyebrow">Board-game engines in C</span>
   <h1>Strong checkers and chess, powered by NNUE neural networks.</h1>
-  <p class="lede">I write board-game engines in C and ship them as offline mobile apps.
-  Six of them evaluate positions with an <strong>NNUE neural network</strong> — the same
-  efficiently-updatable architecture that transformed computer chess — trained from
-  self-play and small enough to run on a phone with no connection.</p>
+  <p class="lede">I write board-game engines in C and ship them as offline apps for
+  Android and Windows, published as <strong>{PUBLISHER}</strong>. Six of them evaluate
+  positions with an <strong>NNUE neural network</strong> — the same efficiently-updatable
+  architecture that transformed computer chess — trained from self-play and small enough
+  to run on a phone with no connection.</p>
   <div class="hero-cta">
     <a class="btn btn-primary" href="#apps">See the apps</a>
     <a class="btn btn-outline" href="/projects/engine/">How the engine works</a>
@@ -456,8 +493,8 @@ def index_page():
   <div class="stats">
     <div class="stat"><b>7</b><span>engines written in C</span></div>
     <div class="stat"><b>6</b><span>running NNUE nets</span></div>
-    <div class="stat"><b>5</b><span>live on Google Play</span></div>
-    <div class="stat"><b>100%</b><span>offline play</span></div>
+    <div class="stat"><b>6</b><span>on the Microsoft Store</span></div>
+    <div class="stat"><b>5</b><span>on Google Play</span></div>
   </div>
   <figure class="hero-shot">
     <!-- This is the LCP element, so it gets the 1600px WebP (~40 KB) rather
