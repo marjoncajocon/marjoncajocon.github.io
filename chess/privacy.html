@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Chess Ta!</title>
+<meta name="description" content="Privacy policy for the Chess Ta! chess app by MMC Solo Dev.">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #14243a;
+    --body: #33415c;
+    --muted: #6b7a94;
+    --rule: #e2e6ee;
+    --accent: #1d5fbf;
+    --chip-bg: #eef3fc;
+    --good-bg: #eaf6ee;
+    --good-br: #b9dfc6;
+    --good-ink: #1c5e33;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1524;
+      --card: #14243a;
+      --ink: #f3f6fa;
+      --body: #c9d5e6;
+      --muted: #9db0c6;
+      --rule: #24354f;
+      --accent: #7fb0f5;
+      --chip-bg: #1b2f4c;
+      --good-bg: #14301f;
+      --good-br: #2c5c3d;
+      --good-ink: #9fd9b4;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1524;
+    --card: #14243a;
+    --ink: #f3f6fa;
+    --body: #c9d5e6;
+    --muted: #9db0c6;
+    --rule: #24354f;
+    --accent: #7fb0f5;
+    --chip-bg: #1b2f4c;
+    --good-bg: #14301f;
+    --good-br: #2c5c3d;
+    --good-ink: #9fd9b4;
+  }
 
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--body);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  header { padding: 1rem 0 1.75rem; }
+  h1 { color: var(--ink); font-size: clamp(1.7rem, 5vw, 2.3rem); line-height: 1.2;
+       margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .sub { color: var(--muted); margin: 0; font-size: .95rem; }
+
+  .card { background: var(--card); border: 1px solid var(--rule);
+          border-radius: 14px; padding: 1.25rem 1.4rem; margin: 0 0 1.1rem; }
+
+  h2 { color: var(--ink); font-size: 1.16rem; margin: 2rem 0 .6rem;
+       letter-spacing: -.01em; }
+  h2:first-child { margin-top: 0; }
+  h3 { color: var(--ink); font-size: 1rem; margin: 1.4rem 0 .4rem; }
+  p { margin: .7rem 0; }
+  ul { margin: .6rem 0; padding-left: 1.25rem; }
+  li { margin: .35rem 0; }
+  a { color: var(--accent); }
+  strong { color: var(--ink); }
+
+  .lede { background: var(--good-bg); border: 1px solid var(--good-br);
+          border-radius: 14px; padding: 1.1rem 1.3rem; margin-bottom: 1.5rem; }
+  .lede p { margin: 0; color: var(--good-ink); }
+  .lede strong { color: var(--good-ink); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .9rem 0 0; padding: 0; }
+  .chips li { list-style: none; margin: 0; background: var(--chip-bg);
+              color: var(--accent); border-radius: 999px;
+              padding: .2rem .7rem; font-size: .82rem; font-weight: 600; }
+
+  .tablewrap { overflow-x: auto; margin: .9rem 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 30rem; font-size: .93rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--rule);
+           vertical-align: top; }
+  th { color: var(--ink); font-weight: 600; white-space: nowrap; }
+
+  footer { color: var(--muted); font-size: .87rem; border-top: 1px solid var(--rule);
+           margin-top: 2.5rem; padding-top: 1.25rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Privacy Policy</h1>
+  <p class="sub">
+    Chess&nbsp;Ta! &middot; MMC Solo Dev &middot; Last updated 28&nbsp;August&nbsp;2026
+  </p>
+</header>
+
+<div class="lede">
+  <p><strong>The short version:</strong> Chess Ta! has no account system and no
+  server of its own. Your games, settings, rating and history stay on your
+  device and are never uploaded. The only third parties involved are Google
+  AdMob, which shows ads in the mobile version, and the app store you bought
+  from, which handles payment.</p>
+</div>
+
+<div class="card">
+  <h2>Who this covers</h2>
+  <p>This policy applies to the <strong>Chess&nbsp;Ta!</strong> app published by
+  <strong>MMC Solo Dev</strong>:</p>
+  <ul class="chips">
+    <li>Android — com.marjoncajocon.chessta</li>
+    <li>Windows — MMCSoloDev.ChessTa</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Information we do not collect</h2>
+  <p>We do not run a server, and the app contains no analytics or
+  crash-reporting SDK. That means we, the developer, never receive:</p>
+  <ul>
+    <li>your name, email address, or any account credentials — there is no sign-up;</li>
+    <li>your games, moves, saved positions, PGN files, rating or match history;</li>
+    <li>your location, contacts, photos, files, microphone or camera;</li>
+    <li>any usage or telemetry data about how you play.</li>
+  </ul>
+  <p>The app requests exactly one Android permission, <code>INTERNET</code>,
+  and it is used only by the advertising and payment services described below.
+  Chess itself — including every AI opponent, the analysis board and the 3D
+  board — runs entirely offline on your device.</p>
+</div>
+
+<div class="card">
+  <h2>Information stored on your device</h2>
+  <p>This data is saved locally so the app can work between sessions. It stays
+  on your device, is removed when you uninstall the app or clear its data, and
+  is never transmitted to us.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A display name you choose, and a random local ID</td>
+            <td>To label your side of the board. Both are made up on your device; neither is verified or sent anywhere.</td></tr>
+        <tr><td>Games, saved positions, PGN library, rating</td>
+            <td>So you can review past games and keep your rating between sessions.</td></tr>
+        <tr><td>Settings — board and piece style, theme, difficulty</td>
+            <td>To restore your preferences next launch.</td></tr>
+        <tr><td>Feature credits and ad counters</td>
+            <td>To track how many free uses of a feature remain before an optional ad. Stored encrypted.</td></tr>
+        <tr><td>Whether you purchased the ad-free upgrade</td>
+            <td>To keep ads off. The purchase itself is verified by your app store, not by us.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Device identifier</h3>
+  <p>On Android the app reads the system <code>ANDROID_ID</code> value, and uses
+  it <strong>only</strong> as part of the
+  encryption key for the local data described above. This ties that data to the
+  device it was created on, so copying it elsewhere simply fails to decrypt. The
+  identifier is read fresh each launch, is never stored in a readable form, and
+  is never sent off the device.</p>
+</div>
+
+<div class="card">
+  <h2>Advertising</h2>
+  <p>The <strong>mobile version</strong> of Chess&nbsp;Ta! shows ads supplied by
+  <strong>Google AdMob</strong>: a banner on the game screen, and optional
+  rewarded ads you can choose to watch to unlock a feature. Every rewarded ad is
+  announced first and can be declined.</p>
+  <p>To serve ads, Google may collect and process data including your
+  advertising ID, approximate location derived from your IP address, and device
+  information. That processing is Google's, governed by their policies, not
+  ours — we never see it. See
+  <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">How Google uses information from sites or apps that use our services</a>.</p>
+  <p><strong>The Windows version shows no ads at all.</strong> The advertising
+  code is only active on mobile.</p>
+
+  <h3>Your choices</h3>
+  <ul>
+    <li><strong>In the EEA, the UK and Switzerland:</strong> the app shows
+      Google's consent form on first launch, before any ad is requested. You can
+      change or withdraw that choice at any time using the
+      <em>Privacy options</em> entry on the home screen.</li>
+    <li><strong>Anywhere:</strong> you can reset or delete your advertising ID
+      in your device settings — on Android, under
+      <em>Settings &rsaquo; Privacy &rsaquo; Ads</em>.</li>
+    <li><strong>Remove ads permanently:</strong> the optional one-time in-app
+      purchase disables all advertising.</li>
+  </ul>
+  <p>Ads are limited to a PG content rating, because this is a
+  general-audience board game.</p>
+</div>
+
+<div class="card">
+  <h2>Purchases</h2>
+  <p>Chess&nbsp;Ta! offers one optional, one-time purchase that removes ads and
+  unlocks unlimited feature credits. The transaction is handled entirely by
+  <strong>Google Play</strong> or the <strong>Microsoft Store</strong>. Your
+  payment details go to them and never reach the app or the developer — we only
+  receive confirmation that a purchase exists, so the app knows to switch ads
+  off.</p>
+</div>
+
+<div class="card">
+  <h2>Children</h2>
+  <p>Chess&nbsp;Ta! is a general-audience game and is not directed at children
+  under 13. We do not knowingly collect personal information from children. If
+  you believe a child has provided personal information through the app, please
+  contact us and we will look into it — though, as described above, the app has
+  no mechanism to send us personal information in the first place.</p>
+</div>
+
+<div class="card">
+  <h2>Deleting your data</h2>
+  <p>Because everything is stored locally, uninstalling the app — or clearing
+  its storage from your device settings — permanently removes all of it. There
+  is no server-side copy for us to delete, and no account to close.</p>
+</div>
+
+<div class="card">
+  <h2>Changes to this policy</h2>
+  <p>If the app's data practices change, this page will be updated and the
+  "last updated" date at the top will change with it. Material changes will also
+  be noted in the app's store listing release notes.</p>
+</div>
+
+<div class="card">
+  <h2>Contact</h2>
+  <p>Questions about this policy or about your data:<br>
+  <a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></p>
+</div>
+
+<footer>
+  &copy; 2026 MMC Solo Dev. Chess&nbsp;Ta! is an offline chess app for Android
+  and Windows.
+</footer>
+
+</div>
+</body>
+</html>
