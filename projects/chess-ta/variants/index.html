@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chess variants offline — 17 in Chess Ta!</title>
+<meta name="description" content="Seventeen chess variants you can play offline: Atomic, Crazyhouse, King of the Hill, Duck Chess, Dark Chess, Horde and more, each on our own C engine.">
+<link rel="canonical" href="https://marjoncajocon.github.io/projects/chess-ta/variants/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Marjon Cajocon">
+<meta property="og:title" content="Chess variants offline — 17 in Chess Ta!">
+<meta property="og:description" content="Seventeen chess variants you can play offline: Atomic, Crazyhouse, King of the Hill, Duck Chess, Dark Chess, Horde and more, each on our own C engine.">
+<meta property="og:url" content="https://marjoncajocon.github.io/projects/chess-ta/variants/">
+<meta property="og:image" content="https://marjoncajocon.github.io/assets/img/chess-ta/phone_03_both_views.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chess variants offline — 17 in Chess Ta!">
+<meta name="twitter:description" content="Seventeen chess variants you can play offline: Atomic, Crazyhouse, King of the Hill, Duck Chess, Dark Chess, Horde and more, each on our own C engine.">
+<meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/chess-ta/phone_03_both_views.png">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://marjoncajocon.github.io/"},{"@type":"ListItem","position":2,"name":"Apps","item":"https://marjoncajocon.github.io/#apps"},{"@type":"ListItem","position":3,"name":"Chess Ta!","item":"https://marjoncajocon.github.io/projects/chess-ta/"},{"@type":"ListItem","position":4,"name":"Chess variants","item":"https://marjoncajocon.github.io/projects/chess-ta/variants/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Chess variants in Chess Ta!","numberOfItems":17,"itemListOrder":"https://schema.org/ItemListUnordered","itemListElement":[
+{"@type":"ListItem","position":1,"name":"King of the Hill","description":"Reaching one of the four centre squares with your king wins immediately, alongside the normal way to win."},
+{"@type":"ListItem","position":2,"name":"Three-Check","description":"Checking the enemy king three times wins the game; checkmate still works as usual."},
+{"@type":"ListItem","position":3,"name":"Racing Kings","description":"No checks are legal in either direction and the first king to reach the eighth rank wins."},
+{"@type":"ListItem","position":4,"name":"Horde","description":"Thirty-six white pawns face a full black army; Black must take every pawn, White must give mate."},
+{"@type":"ListItem","position":5,"name":"Antichess","description":"Captures are compulsory and you win by losing every piece you have."},
+{"@type":"ListItem","position":6,"name":"Atomic","description":"Every capture explodes, removing the surrounding pieces; blowing up the enemy king wins."},
+{"@type":"ListItem","position":7,"name":"Crazyhouse","description":"Pieces you capture change sides and can be dropped back onto the board as a move."},
+{"@type":"ListItem","position":8,"name":"Duck Chess","description":"After each move you place a duck that blocks a square; there is no check, so the king is captured outright."},
+{"@type":"ListItem","position":9,"name":"Dark Chess","description":"You see only the squares your own pieces can reach, and you win by capturing the hidden king."},
+{"@type":"ListItem","position":10,"name":"Bughouse","description":"Two boards and four players, where the pieces you capture are passed to your partner to drop."},
+{"@type":"ListItem","position":11,"name":"4-Player Chess","description":"Four armies on a cross-shaped board playing as two teams, Red and Yellow against Blue and Green."},
+{"@type":"ListItem","position":12,"name":"4-Player Free-for-All","description":"The same four-army board with no teams; a mated player freezes and the remaining armies play on."},
+{"@type":"ListItem","position":13,"name":"No Castling","description":"Standard chess with castling removed entirely, so the king has to walk to safety."},
+{"@type":"ListItem","position":14,"name":"Torpedo","description":"Any pawn may advance two squares from any rank, not just from its starting square."},
+{"@type":"ListItem","position":15,"name":"Sidestep Pawns","description":"Pawns may also step one square sideways, which they cannot do in ordinary chess."},
+{"@type":"ListItem","position":16,"name":"Extinction Chess","description":"Losing every piece of any one kind loses the game, so the queen matters as much as the king."},
+{"@type":"ListItem","position":17,"name":"Upside-down Chess","description":"Both armies start at the wrong end of the board with their pawns behind their pieces."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. The engine is compiled into the app and runs on your device. Nothing is sent to a server, no account is needed, and every variant is playable with no connection at all."}},
+{"@type":"Question","name":"Is this based on Stockfish?","acceptedAnswer":{"@type":"Answer","text":"No. The engine is written from scratch in C — the board representation, move generation, search, evaluation and the neural-network code are all ours, with no third-party engine and no external dependencies."}},
+{"@type":"Question","name":"How strong is the variant AI?","acceptedAnswer":{"@type":"Answer","text":"It is starting strength. Standard chess runs a trained neural network, but the seventeen variants currently use the hand-written evaluation. Their networks have not been trained on millions of games yet, and we expect to improve them in a future update."}},
+{"@type":"Question","name":"Which variants support Chess960?","acceptedAnswer":{"@type":"Answer","text":"Most of them. Any variant whose armies start from a standard back rank can be shuffled into a Chess960 starting position, which covers most of the list including all five added in version 1.4.0."}},
+{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Chess Ta! is free on the Microsoft Store, and every variant is included — there is nothing to unlock before you can play any of them."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="1" y="13" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/></svg> Marjon Cajocon</a>
+<nav class="nav" aria-label="Main">
+<a href="/#apps">Apps</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM</a>
+<a href="/blog/">Writing</a>
+<button class="btn-ghost" id="aboutBtn" type="button">About me</button>
+<button class="btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark">&#9681;</button>
+</nav></div></header>
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="/">Home</a> &rsaquo; <a href="/#apps">Apps</a> &rsaquo; <a href="/projects/chess-ta/">Chess Ta!</a> &rsaquo; Chess variants</p>
+<section class="hero" style="border:0;padding-bottom:1rem">
+  <span class="eyebrow">Chess variants</span>
+  <h1>Chess variants in Chess Ta!</h1>
+  <p class="lede">Seventeen ways to play, all offline, all on an engine written from scratch in C.</p>
+  <p><span class="tag">17 variants</span> <span class="tag is-muted">Offline</span> <span class="tag is-muted">Free</span></p>
+  <div class="hero-cta"><a class="btn btn-primary" href="https://apps.microsoft.com/detail/9N7582TZQ33L" rel="noopener">Get it on Microsoft Store</a></div>
+</section>
+
+<div class="prose">
+<p>Each variant below is a separate set of rules with its own move generator, not
+a cosmetic mode — the engine really does play Atomic differently from Antichess.
+Sixteen of the seventeen have an AI opponent; Bughouse is pass-and-play only,
+because it needs four seats and two boards at once. Most can also start from a
+shuffled Chess960 back rank.</p>
+
+<h2>Classic variants</h2>
+
+<h3>King of the Hill</h3>
+<p>The four centre squares win the game. March your king to d4, d5, e4 or e5 and
+you win on the spot, with checkmate still available the usual way. It turns the
+king from something you hide into something you run, and the centre stops being
+a place you fight over and becomes the finish line.</p>
+
+<h3>Three-Check</h3>
+<p>Check the enemy king three times and you win, no mate required. Checkmate
+still ends the game normally, so there are two ways to finish. Sacrifices that
+would be reckless in ordinary chess become sound if they buy a check, and a king
+that has been checked twice can never relax again.</p>
+
+<h3>Racing Kings</h3>
+<p>Nobody may give check, in either direction, and the first king to reach the
+eighth rank wins. Every piece starts off the back ranks and exists only to clear
+a path or block one. It plays less like chess than like a race where both runners
+can trip each other, and a single tempo usually decides it.</p>
+
+<h3>Horde</h3>
+<p>Thirty-six white pawns against one full black army. White has no king at all
+and wins by mating Black's; Black wins by capturing every last pawn. The pawn
+mass is slow but unstoppable if it is left alone, so Black spends the whole game
+deciding which part of the wall to break before it arrives.</p>
+
+<h3>Antichess</h3>
+<p>You win by losing everything. Captures are compulsory whenever one is
+available, and the king is an ordinary piece with no special status — it can be
+taken, and a pawn may even promote to one. Forcing your opponent to capture is
+the whole game, and a material lead is a problem, not an advantage.</p>
+
+<h3>Atomic</h3>
+<p>Every capture detonates, wiping out the capturing piece, the captured piece
+and the pieces standing around them. Blowing up the enemy king wins outright, so
+mate is not required — but the same blast can take your own king with it, which
+makes some perfectly legal captures fatal to the player making them.</p>
+
+<h3>Crazyhouse</h3>
+<p>Nothing you capture is ever really gone. Captured pieces switch sides and can
+be dropped back onto any empty square as a move, so material returns to the board
+in your opponent's hands. Attacks never quite die out, defence needs actual
+squares rather than just extra pieces, and the board only gets busier.</p>
+
+<h3>Duck Chess</h3>
+<p>Move a piece, then move the duck. The duck sits on one square and blocks it
+for everyone, and it moves every single turn. There is no check in this variant —
+the king can be captured like anything else — so threats have to be seen rather
+than announced, and the duck can shut down the only escape square.</p>
+
+<h3>Dark Chess</h3>
+<p>You see only the squares your own pieces can move to. The rest of the board is
+unknown, including where the enemy king is, and you win by capturing it rather
+than by mate. Also known as Fog of War, though we use its original name. Every
+move is a guess informed by what you last saw, and by what has stopped being
+visible.</p>
+
+<h3>Bughouse</h3>
+<p>Two boards, four players, two teams. Every piece you capture is handed to your
+partner, who can drop it onto their own board. You end up playing your own game
+and negotiating theirs at the same time. This is the one variant with no AI
+opponent — it needs four seats, so it is pass-and-play only.</p>
+
+<h3>4-Player Chess</h3>
+<p>Four armies on a cross-shaped board, playing as two teams: Red and Yellow
+against Blue and Green. Turns pass around the board, so the position in front of
+you changes three times before you move again, and a threat you ignore has two
+other players' worth of time to become fatal.</p>
+
+<h3>4-Player Free-for-All</h3>
+<p>The same cross-shaped board and four armies, but nobody is on your side. A
+mated player freezes in place and their pieces stay on the board as obstacles,
+while everyone still standing plays on. Attacking is expensive here, because the
+two players who are not involved get to profit from whatever you spend.</p>
+
+<h2>New in version 1.4.0</h2>
+<p>Five rule-tweak variants, each changing exactly one thing about ordinary
+chess. All five also play Chess960.</p>
+
+<h3>No Castling</h3>
+<p>Chess with castling deleted, an idea Vladimir Kramnik put forward to get more
+variety out of the standard opening. Everything else is untouched. The king has
+to walk to safety, which takes moves nobody can spare, and centuries of opening
+theory built around a quick castle stop applying immediately.</p>
+
+<h3>Torpedo</h3>
+<p>Any pawn may advance two squares from any rank, not only from its starting
+square. Pawns arrive roughly twice as fast, passed pawns turn into genuine
+emergencies, and a structure that looks safely blocked can be broken open in a
+single move. En passant still applies, wherever the double step happened.</p>
+
+<h3>Sidestep Pawns</h3>
+<p>Pawns may also step one square sideways, without capturing. It sounds small
+and changes everything: doubled pawns can untangle, a blocked chain can shuffle
+out of the way, and files open and close constantly. Nothing stays fixed, so the
+pawn structure stops being the stable part of the position.</p>
+
+<h3>Extinction Chess</h3>
+<p>Lose every piece of one kind and you lose the game — R. Wayne Schmittberger's
+1985 idea. You start with a single queen and a single king, so losing either ends
+it at once and a queen trade is a resignation. There is no check: the king is
+just another piece. Promoting your last pawn loses too, because your pawns then
+hit zero.</p>
+
+<h3>Upside-down Chess</h3>
+<p>Both armies start at the wrong end of the board, so each side's pawns sit in
+front of its own back rank and face the wrong way. Only the knights can move at
+all on move one — everything else is boxed in by its own pawns. Every opening
+book you have ever read is worthless from the first move.</p>
+
+<h2 id="how-strong-is-the-ai">How strong is the AI?</h2>
+<div class="callout">
+<p><strong>Honest answer: the variant AI is starting strength, and we expect to
+improve it.</strong></p>
+<p>Standard chess in Chess Ta! runs a trained NNUE neural network, fitted on
+nearly two million unique positions from the engine's own self-play. The
+seventeen variants do not have that yet. They currently play on the engine's
+hand-written evaluation — real search, real tactics, but no learned network
+behind it.</p>
+<p>That is a deliberate choice rather than an oversight. In this engine a
+network <em>replaces</em> the evaluation instead of correcting it, so a network
+that has not learned enough plays <em>worse</em> than no network at all. We
+trained one for each of the newest variants and measured them against the
+hand-written evaluation in real games — and every one of them lost. So none of
+them shipped. Training on millions of games per variant is what would change
+that, and it is planned rather than done.</p>
+<p>Until then the variants play a solid, honest game and will not embarrass
+themselves, but they are not yet as strong as the standard chess engine.</p>
+</div>
+
+<h2>Built from scratch — no Stockfish, no borrowed engine</h2>
+<p>The engine underneath all of this is ours. It is written in C with no
+third-party dependencies: the bitboard representation, magic-bitboard sliding
+attacks, move generation, the alpha-beta search with its transposition table and
+pruning, the evaluation, the NNUE inference, and the Go trainer that produces the
+networks. There is no Stockfish in it, no chess library doing the thinking, and
+nothing calling out to a server.</p>
+<p>Each variant is a small rule module plugged into that shared engine, which is
+why seventeen of them fit in an app that still runs offline on a phone. If you
+want the details of how the search and the training pipeline actually work, they
+are written up on the <a href="/projects/engine/">engine page</a>.</p>
+
+<h2>Questions</h2>
+
+<h3>Does it work offline?</h3>
+<p>Yes. The engine is compiled into the app and runs on your device. Nothing is
+sent to a server, no account is needed, and every variant is playable with no
+connection at all.</p>
+
+<h3>Is this based on Stockfish?</h3>
+<p>No. The engine is written from scratch in C — the board representation, move
+generation, search, evaluation and the neural-network code are all ours, with no
+third-party engine and no external dependencies.</p>
+
+<h3>How strong is the variant AI?</h3>
+<p>It is starting strength. Standard chess runs a trained neural network, but the
+seventeen variants currently use the hand-written evaluation. Their networks have
+not been trained on millions of games yet, and we expect to improve them in a
+future update.</p>
+
+<h3>Which variants support Chess960?</h3>
+<p>Most of them. Any variant whose armies start from a standard back rank can be
+shuffled into a Chess960 starting position, which covers most of the list
+including all five added in version 1.4.0.</p>
+
+<h3>Is it free?</h3>
+<p>Yes. Chess Ta! is free on the Microsoft Store, and every variant is included —
+there is nothing to unlock before you can play any of them.</p>
+
+<p style="margin-top:2rem"><a href="/projects/chess-ta/">Back to Chess Ta!</a>
+&middot; <a href="/projects/engine/">How the engine works</a>
+&middot; <a href="/chess/privacy.html">Privacy policy</a></p>
+</div>
+</div></main><footer class="site-foot"><div class="wrap">
+<div class="foot-links">
+<a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/chess-ta/variants/">Chess variants</a>
+<a href="/projects/dama-ta/">Dama Ta!</a>
+<a href="/projects/brazilian/">Brazilian Checkers</a>
+<a href="/projects/international/">International Draughts</a>
+<a href="/projects/russian/">Russian Checkers</a>
+<a href="/projects/english/">English Draughts</a>
+<a href="/projects/turkish/">Turkish Draughts</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM engine</a>
+<a href="/blog/">Writing</a>
+</div>
+<p>&copy; 2026 Marjon Cajocon · published as MMC Solo Dev. Board-game engines in C, apps in Flutter.</p>
+</div></footer>
+<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><div class="about-in">
+<div class="about-head">
+  <img src="/res/profile.jpg" alt="" width="68" height="68">
+  <div><h2 id="aboutTitle" style="margin:0">Marjon Cajocon</h2>
+  <p style="margin:.2rem 0 0;color:var(--muted)">Software engineer · Talibon, Bohol, Philippines</p></div>
+</div>
+<p>I build game engines in C and the apps that ship them. Seven board-game
+engines, six of them running NNUE neural networks I trained myself, plus a
+from-scratch LLM engine written in dependency-free C.</p>
+<dl>
+  <dt>Developer</dt><dd><strong>MMC Solo Dev</strong> — the name my apps ship under
+      on Google Play and the Microsoft Store</dd>
+  <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
+  <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
+  <dt>Certification</dt><dd>EDP Specialist — Civil Service, rated <strong>94.65%</strong>
+      <span style="color:var(--muted)">(80% to pass)</span></dd>
+  <dt>Published</dt><dd>Six apps on the Microsoft Store, five on Google Play</dd>
+  <dt>Contact</dt><dd><a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></dd>
+  <dt>Code</dt><dd><a href="https://github.com/marjoncajocon" rel="noopener">github.com/marjoncajocon</a></dd>
+</dl>
+<p style="margin-top:1.2rem"><button class="btn btn-outline" id="aboutClose" type="button">Close</button></p>
+</div></dialog>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

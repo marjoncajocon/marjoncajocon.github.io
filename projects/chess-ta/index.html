@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chess Ta! — offline chess with an NNUE engine and 3D board</title>
-<meta name="description" content="Chess Ta! plays offline chess with a hand-written NNUE neural-network engine in C, a real 3D board, an analysis board, game review and eleven difficulty tiers.">
+<title>Chess Ta! — offline chess, 17 variants and a 3D board</title>
+<meta name="description" content="Chess Ta! plays offline chess with a hand-written NNUE engine in C, seventeen chess variants, a real 3D board, analysis and eleven difficulty tiers.">
 <link rel="canonical" href="https://marjoncajocon.github.io/projects/chess-ta/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Marjon Cajocon">
-<meta property="og:title" content="Chess Ta! — offline chess with an NNUE engine and 3D board">
-<meta property="og:description" content="Chess Ta! plays offline chess with a hand-written NNUE neural-network engine in C, a real 3D board, an analysis board, game review and eleven difficulty tiers.">
+<meta property="og:title" content="Chess Ta! — offline chess, 17 variants and a 3D board">
+<meta property="og:description" content="Chess Ta! plays offline chess with a hand-written NNUE engine in C, seventeen chess variants, a real 3D board, analysis and eleven difficulty tiers.">
 <meta property="og:url" content="https://marjoncajocon.github.io/projects/chess-ta/">
 <meta property="og:image" content="https://marjoncajocon.github.io/assets/img/chess-ta/phone_03_both_views.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Chess Ta! — offline chess with an NNUE engine and 3D board">
-<meta name="twitter:description" content="Chess Ta! plays offline chess with a hand-written NNUE neural-network engine in C, a real 3D board, an analysis board, game review and eleven difficulty tiers.">
+<meta name="twitter:title" content="Chess Ta! — offline chess, 17 variants and a 3D board">
+<meta name="twitter:description" content="Chess Ta! plays offline chess with a hand-written NNUE engine in C, seventeen chess variants, a real 3D board, analysis and eleven difficulty tiers.">
 <meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/chess-ta/phone_03_both_views.png">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/site.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Chess Ta!", "applicationCategory": "GameApplication", "operatingSystem": "Windows", "description": "Chess Ta! plays offline chess with a hand-written NNUE neural-network engine in C, a real 3D board, an analysis board, game review and eleven difficulty tiers.", "author": {"@type": "Person", "name": "Marjon Cajocon"}, "publisher": {"@type": "Organization", "name": "MMC Solo Dev"}, "url": "https://marjoncajocon.github.io/projects/chess-ta/", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Chess Ta!", "applicationCategory": "GameApplication", "operatingSystem": "Windows", "description": "Chess Ta! plays offline chess with a hand-written NNUE engine in C, seventeen chess variants, a real 3D board, analysis and eleven difficulty tiers.", "author": {"@type": "Person", "name": "Marjon Cajocon"}, "publisher": {"@type": "Organization", "name": "MMC Solo Dev"}, "url": "https://marjoncajocon.github.io/projects/chess-ta/", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -39,18 +39,21 @@
   <span class="eyebrow">Chess</span>
   <h1>Chess Ta!</h1>
   <p class="lede">Offline chess with an NNUE engine, a real 3D board, and analysis tools.</p>
-  <p><span class="tag">NNUE neural network</span> <span class="tag is-muted">MMC Solo Dev</span></p>
+  <p><span class="tag">NNUE neural network</span> <span class="tag">17 chess variants</span> <span class="tag is-muted">MMC Solo Dev</span></p>
   <div class="hero-cta"><a class="btn btn-primary" href="https://apps.microsoft.com/detail/9N7582TZQ33L" rel="noopener">Get it on Microsoft Store</a></div>
 </section>
 
 <div class="prose">
 <h2>The engine</h2>
 <p>The evaluation is an <strong>NNUE neural network</strong> — 256 hidden units over 768 input features, quantised int16, QA 255 / QB 64 — written in C and compiled straight into the app. It is trained from self-play by a Go trainer, quantised to 16-bit integers, and evaluated incrementally so the search can afford to call it at every node.</p>
-<h2>The rules of this variant</h2>
+<p>That trained network is what standard chess plays on. The variants share the same search but currently use the engine's hand-written evaluation instead — their own networks are not trained yet, which is <a href="/projects/chess-ta/variants/#how-strong-is-the-ai">explained in full on the variants page</a>. Nothing here is Stockfish or a wrapper around someone else's engine: the whole thing is written from scratch in C.</p>
+<h2>The rules, and seventeen ways to bend them</h2>
 <p>Standard chess, plus Chess960 (Fischer Random). Eleven opponent tiers run from a deliberately gentle beginner up to a full-strength engine, so the same app works for someone learning the moves and someone studying an opening.</p>
+<p>Beyond that the app ships <strong>seventeen chess variants</strong>, each a real rule set with its own move generator rather than a cosmetic mode. Blow pieces up in Atomic, drop captured material back onto the board in Crazyhouse, run your king to the centre in King of the Hill, play half-blind in Dark Chess, or hold off thirty-six pawns in Horde. Version 1.4.0 added five more that each change a single rule of ordinary chess.</p>
+<p><a href="/projects/chess-ta/variants/"><strong>See all 17 variants and how they play →</strong></a></p>
 <h2>What you get</h2>
 <ul>
-<li>Play offline against eleven difficulty tiers, from beginner to full strength</li><li>A real 3D board rendered with three.js, alongside the classic 2D board</li><li>Analysis board with an evaluation bar and Best Move hints</li><li>Game review: step through a finished game move by move</li><li>PGN library — import, browse and review your own games</li><li>Custom position setup, pass &amp; play on one device, and AI vs AI</li><li>Board and piece themes, and full offline operation</li>
+<li>Play offline against eleven difficulty tiers, from beginner to full strength</li><li><a href="/projects/chess-ta/variants/">Seventeen chess variants</a> — Atomic, Crazyhouse, King of the Hill, Duck Chess, Dark Chess, Horde and more</li><li>A real 3D board rendered with three.js, alongside the classic 2D board</li><li>Analysis board with an evaluation bar and Best Move hints</li><li>Game review: step through a finished game move by move</li><li>PGN library — import, browse and review your own games</li><li>Custom position setup, pass &amp; play on one device, and AI vs AI</li><li>Board and piece themes, and full offline operation</li>
 </ul>
 </div>
 
@@ -65,11 +68,12 @@ shots are the real board renderer, captured from the same page the app ships.</p
 </div>
 
 <div class="prose">
-<p style="margin-top:2rem"><a href="/projects/engine/">How the engine and its training pipeline work</a> · <a href="/chess/privacy.html">Privacy policy</a></p>
+<p style="margin-top:2rem"><a href="/projects/chess-ta/variants/">All 17 chess variants</a> · <a href="/projects/engine/">How the engine and its training pipeline work</a> · <a href="/chess/privacy.html">Privacy policy</a></p>
 </div>
 </div></main><footer class="site-foot"><div class="wrap">
 <div class="foot-links">
 <a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/chess-ta/variants/">Chess variants</a>
 <a href="/projects/dama-ta/">Dama Ta!</a>
 <a href="/projects/brazilian/">Brazilian Checkers</a>
 <a href="/projects/international/">International Draughts</a>
