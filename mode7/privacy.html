@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Mode7</title>
+<meta name="description" content="Privacy policy for Mode7, the retro console emulator by MMC Solo Dev: no accounts, no ads, no analytics — everything stays on your device.">
+<link rel="canonical" href="https://marjoncajocon.github.io/mode7/privacy.html">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #14243a;
+    --body: #33415c;
+    --muted: #6b7a94;
+    --rule: #e2e6ee;
+    --accent: #1d5fbf;
+    --chip-bg: #eef3fc;
+    --good-bg: #eaf6ee;
+    --good-br: #b9dfc6;
+    --good-ink: #1c5e33;
+    --warn-bg: #fff7e6;
+    --warn-br: #f0d9a8;
+    --warn-ink: #6b4a00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1524;
+      --card: #14243a;
+      --ink: #f3f6fa;
+      --body: #c9d5e6;
+      --muted: #9db0c6;
+      --rule: #24354f;
+      --accent: #7fb0f5;
+      --chip-bg: #1b2f4c;
+      --good-bg: #14301f;
+      --good-br: #2c5c3d;
+      --good-ink: #9fd9b4;
+      --warn-bg: #33270e;
+      --warn-br: #6b4f1a;
+      --warn-ink: #f2d38a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1524;
+    --card: #14243a;
+    --ink: #f3f6fa;
+    --body: #c9d5e6;
+    --muted: #9db0c6;
+    --rule: #24354f;
+    --accent: #7fb0f5;
+    --chip-bg: #1b2f4c;
+    --good-bg: #14301f;
+    --good-br: #2c5c3d;
+    --good-ink: #9fd9b4;
+    --warn-bg: #33270e;
+    --warn-br: #6b4f1a;
+    --warn-ink: #f2d38a;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--body);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  header { padding: 1rem 0 1.75rem; }
+  h1 { color: var(--ink); font-size: clamp(1.7rem, 5vw, 2.3rem); line-height: 1.2;
+       margin: 0 0 .4rem; letter-spacing: -.02em; }
+  .sub { color: var(--muted); margin: 0; font-size: .95rem; }
+
+  .card { background: var(--card); border: 1px solid var(--rule);
+          border-radius: 14px; padding: 1.25rem 1.4rem; margin: 0 0 1.1rem; }
+
+  h2 { color: var(--ink); font-size: 1.16rem; margin: 2rem 0 .6rem;
+       letter-spacing: -.01em; }
+  h2:first-child { margin-top: 0; }
+  h3 { color: var(--ink); font-size: 1rem; margin: 1.4rem 0 .4rem; }
+  p { margin: .7rem 0; }
+  ul { margin: .6rem 0; padding-left: 1.25rem; }
+  li { margin: .35rem 0; }
+  a { color: var(--accent); }
+  strong { color: var(--ink); }
+  code { font-size: .92em; }
+
+  .lede { background: var(--good-bg); border: 1px solid var(--good-br);
+          border-radius: 14px; padding: 1.1rem 1.3rem; margin-bottom: 1.5rem; }
+  .lede p { margin: 0; color: var(--good-ink); }
+  .lede strong { color: var(--good-ink); }
+  .note { background: var(--warn-bg); border: 1px solid var(--warn-br);
+          border-radius: 10px; padding: .8rem 1rem; margin: .9rem 0; color: var(--warn-ink); }
+  .note strong { color: var(--warn-ink); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .9rem 0 0; padding: 0; }
+  .chips li { list-style: none; margin: 0; background: var(--chip-bg);
+              color: var(--accent); border-radius: 999px;
+              padding: .2rem .7rem; font-size: .82rem; font-weight: 600; }
+
+  .tablewrap { overflow-x: auto; margin: .9rem 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 30rem; font-size: .93rem; }
+  th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--rule);
+           vertical-align: top; }
+  th { color: var(--ink); font-weight: 600; white-space: nowrap; }
+
+  footer { color: var(--muted); font-size: .87rem; border-top: 1px solid var(--rule);
+           margin-top: 2.5rem; padding-top: 1.25rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Privacy Policy</h1>
+  <p class="sub">
+    Mode7 &middot; MMC Solo Dev &middot; Last updated 21&nbsp;September&nbsp;2026
+  </p>
+</header>
+
+<div class="lede">
+  <p><strong>The short version:</strong> Mode7 collects nothing. There are no
+  accounts, no ads, no analytics and no crash reporting, and the app has no
+  server to send anything to. Your games, saves and settings stay on your
+  device. The only network use is the optional two-player mode, which talks
+  directly to another device on your own Wi-Fi or hotspot.</p>
+</div>
+
+<div class="card">
+  <h2>Who this covers</h2>
+  <p>This policy applies to <strong>Mode7</strong>, the retro console emulator
+  published by <strong>MMC Solo Dev</strong>, free of charge, on every platform
+  it ships on:</p>
+  <ul class="chips">
+    <li>Android — com.marcaj.semu</li>
+    <li>Windows</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>What we collect: nothing</h2>
+  <p>Mode7 does not collect, transmit, sell or share any personal information.
+  It contains no advertising SDK, no analytics or tracking SDK and no
+  crash-reporting service, and it does not ask you to sign in. The developer
+  receives no data from the app at all.</p>
+  <p>The app never asks for your location, contacts, photos, microphone or
+  camera. On Android it requests only two permissions:</p>
+  <ul>
+    <li><code>INTERNET</code>: used only for local two-player mode
+      (see <em>Playing together</em> below). The app does not contact any
+      internet server.</li>
+    <li><code>ACCESS_NETWORK_STATE</code>: read only, to show the host which
+      local address a second player should connect to.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Information stored on your device</h2>
+  <p>Everything below is saved in the app's private storage so it keeps working
+  between sessions. It never leaves your device, and it is deleted when you
+  uninstall the app or clear its data.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>What</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Game files you add</td>
+            <td>Copied into the app's storage when you pick them with your device's file picker, so your library keeps working if the original file is moved. Mode7 includes no games; you supply your own.</td></tr>
+        <tr><td>Your library: game titles, console, last played time, cover pictures</td>
+            <td>To list and sort your games. Cover pictures are captured from the game's own screen while you play.</td></tr>
+        <tr><td>Battery saves and save states</td>
+            <td>So you can continue where you left off.</td></tr>
+        <tr><td>System (BIOS) files you supply</td>
+            <td>A few consoles will not start without them. Mode7 includes none; you provide your own.</td></tr>
+        <tr><td>Settings: controls layout, controller mapping, display and sound options</td>
+            <td>To restore your preferences next launch.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Mode7 only opens files you choose yourself through the system file picker.
+  It does not scan or read anything else on your device.</p>
+</div>
+
+<div class="card">
+  <h2>Playing together (local network)</h2>
+  <p>The optional two-player mode connects two devices on the same Wi-Fi or
+  phone hotspot, directly to each other. To let the other player find the game,
+  the hosting device announces on the local network, and only there, its
+  device name, the title and console of the game being hosted, and a
+  fingerprint of the game file used to check both players have the same copy.
+  During play, the two devices exchange controller inputs.</p>
+  <p>This traffic stays on your local network. It never passes through a server
+  of ours, and nothing about it is recorded or sent to us. Hosting stops when
+  you leave the screen or end the game.</p>
+</div>
+
+<div class="card">
+  <h2>Controllers</h2>
+  <p>If you connect a USB or Bluetooth controller, Mode7 reads its button
+  presses to play the game and shows the controller's name in Settings. This is
+  handled on your device and is not stored or shared beyond your own button
+  mapping.</p>
+</div>
+
+<div class="card">
+  <h2>Google Play</h2>
+  <p>When you download Mode7 from Google Play, Google may collect information
+  as part of running its store, such as install and crash statistics provided
+  by Android and Google Play services. That processing is Google's, under
+  <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>,
+  and is not controlled by or shared with the developer beyond the aggregated
+  statistics Google shows every developer.</p>
+</div>
+
+<div class="card">
+  <h2>Children</h2>
+  <p>Mode7 is not directed at children under 13. Because the app collects no
+  personal information from anyone, it collects none from children either.</p>
+</div>
+
+<div class="card">
+  <h2>Your rights</h2>
+  <p>Since we hold no data about you, there is nothing for us to access,
+  correct or delete. Everything the app stores is on your device and yours to
+  remove: delete games from the library, or uninstall the app to erase all of
+  it.</p>
+</div>
+
+<div class="card">
+  <h2>Changes to this policy</h2>
+  <p>If the app's data practices change, this page will be updated and the
+  "last updated" date at the top will change with it.</p>
+</div>
+
+<div class="card">
+  <h2>Contact</h2>
+  <p>Questions about this policy:<br>
+  <a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></p>
+</div>
+
+<footer>
+  &copy; 2026 MMC Solo Dev. Mode7 is a free retro console emulator. It includes
+  no games or system files, and is not affiliated with or endorsed by any
+  console manufacturer.
+</footer>
+
+</div>
+</body>
+</html>
