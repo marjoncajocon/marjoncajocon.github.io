@@ -3,6 +3,7 @@
   <url><loc>https://marjoncajocon.github.io/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://marjoncajocon.github.io/projects/engine/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://marjoncajocon.github.io/projects/llm-project/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marjoncajocon.github.io/projects/mmc-shell/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://marjoncajocon.github.io/blog/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://marjoncajocon.github.io/projects/chess-ta/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://marjoncajocon.github.io/projects/chess-ta/variants/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>

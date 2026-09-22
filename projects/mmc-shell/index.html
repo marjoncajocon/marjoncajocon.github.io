@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mmc-shell — a portable bash-compatible shell and terminal in C</title>
+<meta name="description" content="mmc-shell: an open-source, portable git-bash style shell and terminal written from scratch in pure C11. Runs bash scripts, no installer, no dependencies. MIT licensed.">
+<link rel="canonical" href="https://marjoncajocon.github.io/projects/mmc-shell/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marjon Cajocon">
+<meta property="og:title" content="mmc-shell — a portable bash-compatible shell and terminal in C">
+<meta property="og:description" content="mmc-shell: an open-source, portable git-bash style shell and terminal written from scratch in pure C11. Runs bash scripts, no installer, no dependencies. MIT licensed.">
+<meta property="og:url" content="https://marjoncajocon.github.io/projects/mmc-shell/">
+<meta property="og:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="mmc-shell — a portable bash-compatible shell and terminal in C">
+<meta name="twitter:description" content="mmc-shell: an open-source, portable git-bash style shell and terminal written from scratch in pure C11. Runs bash scripts, no installer, no dependencies. MIT licensed.">
+<meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/hero_3d.png">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "mmc-shell", "alternateName": "mmc", "description": "A small, portable, git-bash style shell and terminal written from scratch in pure C11.", "programmingLanguage": "C", "codeRepository": "https://github.com/marjoncajocon/mmc-shell", "license": "https://opensource.org/licenses/MIT", "runtimePlatform": ["Windows", "Linux", "macOS", "Android"], "version": "0.2.0", "author": {"@type": "Person", "name": "Marjon Cajocon", "url": "https://marjoncajocon.github.io/"}, "url": "https://marjoncajocon.github.io/projects/mmc-shell/"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="1" y="13" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/></svg> Marjon Cajocon</a>
+<nav class="nav" aria-label="Main">
+<a href="/#apps">Apps</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM</a>
+<a href="/blog/">Writing</a>
+<button class="btn-ghost" id="aboutBtn" type="button">About me</button>
+<button class="btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark">&#9681;</button>
+</nav></div></header>
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="/">Home</a> &rsaquo; mmc-shell</p>
+<section class="hero" style="border:0;padding-bottom:1rem">
+  <span class="eyebrow">Open source · MIT license</span>
+  <h1>mmc-shell: a portable, git-bash style shell written in C.</h1>
+  <p class="lede">A bash-compatible shell with its own terminal window, written from scratch
+  in pure C11. No installer and no dependencies — unzip it anywhere, even on a USB drive,
+  and that folder becomes <code>/</code>.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="https://github.com/marjoncajocon/mmc-shell" rel="noopener">Source on GitHub</a>
+    <a class="btn btn-outline" href="https://github.com/marjoncajocon/mmc-shell/releases" rel="noopener">Download a release</a>
+  </div>
+  <ul class="pills">
+    <li class="pill is-primary">C11</li><li class="pill">Windows</li>
+    <li class="pill">Linux</li><li class="pill">macOS</li><li class="pill">Android (Termux)</li>
+  </ul>
+</section>
+
+<div class="prose">
+<h2>The idea</h2>
+<p>I wanted a terminal that feels like Linux or git-bash on any PC: a <code>/home</code>, a
+<code>/usr</code>, an <code>/etc</code>, and <code>export PATH=...</code> that just works. The
+folder that holds the program becomes <code>/</code>, so the whole development setup —
+home folder, settings, history, tools — travels with it. The user name is kept in
+<code>/etc/user</code>, so the home folder is the same on every PC it is plugged into.</p>
+<p><strong>mmc</strong> stands for <strong>M</strong>arjon <strong>M</strong>angindo
+<strong>C</strong>ajocon.</p>
+
+<h2>mmc-shell: every feature</h2>
+
+<h3>Portable by design</h3>
+<ul>
+<li>One executable, no installer, no dependencies. The folder it sits in becomes
+<code>/</code>; the first run creates <code>etc/</code>, <code>home/&lt;user&gt;/</code>,
+<code>usr/bin/</code> and <code>tmp/</code> next to it.</li>
+<li><strong>One home on every PC:</strong> the user name is kept in <code>/etc/user</code>, so
+<code>HOME</code>, <code>.mmcrc</code>, the history and <code>.gitconfig</code> travel with
+the folder whatever the login name is.</li>
+<li><code>$MMC_DRIVE</code> is the drive mmc is on (e.g. <code>/d</code>), so
+<code>/etc/profile</code> keeps working when the drive letter changes on another PC.</li>
+<li>Programs you start from it — <code>code .</code>, git, node, go, flutter — inherit the
+environment you set up.</li>
+</ul>
+
+<h3>Runs bash scripts</h3>
+<ul>
+<li>440 compatibility cases, taken from how git, gradle, flutter, npm, emsdk and the Android
+SDK really use bash, give the same output and exit status as bash 5.3.</li>
+<li>Pipelines (<code>|</code>, <code>|&amp;</code>), <code>&amp;&amp;</code> / <code>||</code>,
+background jobs, <code>!</code>, <code>time</code>, subshells and groups.</li>
+<li><code>if</code>, <code>while</code>, <code>until</code>, <code>for x in</code>, C-style
+<code>for ((;;))</code>, <code>case</code>, <code>select</code>, functions,
+<code>break n</code> / <code>continue n</code>.</li>
+<li><code>[[ ]]</code> with pattern matching and <code>=~</code> regex
+(<code>BASH_REMATCH</code>), <code>(( ))</code>, <code>let</code> and <code>$(( ))</code>
+arithmetic.</li>
+<li>Every redirection: <code>&gt; &gt;&gt; &lt; &lt;&gt; &gt;| 2&gt;&amp;1 &amp;&gt;</code>,
+fd duplication and closing, <code>{fd}&gt;file</code>, here-docs, here-strings,
+<code>exec 3&gt;file</code>.</li>
+<li>Command substitution, <code>$(&lt; file)</code>, and streaming process substitution
+<code>&lt;(cmd)</code> / <code>&gt;(cmd)</code>; <code>coproc</code>.</li>
+<li>All quoting forms (<code>$'\n'</code>, <code>$"x"</code>), brace expansion
+(<code>{a,b}{1..3}</code>, <code>{01..10..2}</code>) and tilde expansion
+(<code>~ ~+ ~-</code>).</li>
+<li>The whole parameter expansion set: defaults, lengths, prefix/suffix removal,
+substitution, substrings, case changes, indirection, <code>${v@Q}</code> and friends.</li>
+<li>Indexed and associative arrays; <code>declare</code> with <code>-i -l -u -r -x -n -g
+-A</code>, <code>local</code>, <code>readonly</code>, namerefs.</li>
+<li>Globbing with <code>* ? [ ]</code>, POSIX classes, <code>**</code> (globstar) and extglob
+<code>?( ) *( ) +( ) @( ) !( )</code>.</li>
+<li><code>set -euxo pipefail</code>, <code>trap</code>, <code>local -</code>,
+<code>caller</code>, <code>FUNCNAME</code>, <code>BASH_SOURCE</code>, <code>PIPESTATUS</code>
+and the other bash variables — scripts that check <code>BASH_VERSION</code> run.</li>
+<li>All of bash's builtins, from <code>alias</code> to <code>wait</code>, plus small
+fallbacks (<code>ls cat clear mkdir env which</code>) used only when no such program is in
+the PATH.</li>
+<li>Many <code>shopt</code> options (<code>autocd cdspell dirspell extglob globstar
+nullglob dotglob nocaseglob lastpipe inherit_errexit</code> …) and bash compatibility levels
+<code>compat31</code>–<code>compat44</code> / <code>BASH_COMPAT</code>.</li>
+<li><code>export -f</code> passes functions to child shells the way bash does, taking only a
+clean function definition — the Shellshock hole is closed.</li>
+<li>Scripts saved with Windows CR LF line endings run like any other.</li>
+</ul>
+
+<h3>Interactive use</h3>
+<ul>
+<li>Line editor with history, <strong>Ctrl+R incremental search</strong> (Ctrl+S forward),
+word movement, Home/End and the usual Ctrl-A/E/K/U/W/L keys.</li>
+<li>A kill ring (Ctrl+Y, Alt+Y), undo (Ctrl+_), transpose, Alt+U/L/C word case, Alt+. for the
+last word, and Ctrl+X Ctrl+E to edit the line in <code>$EDITOR</code>.</li>
+<li>Tab completion of commands, functions and files, and bash's programmable completion
+(<code>complete</code>, <code>compgen</code>, <code>compopt</code>) — git's own
+<code>git-completion.bash</code> gives branches and options.</li>
+<li>History expansion: <code>!!</code>, <code>!n</code>, <code>!word</code>,
+<code>!$</code>, modifiers like <code>:h :t :s/old/new/</code>, and <code>^old^new</code>;
+<code>fc</code> to list, edit and re-run commands.</li>
+<li><code>HISTSIZE</code>, <code>HISTFILESIZE</code>, <code>HISTCONTROL</code>,
+<code>PROMPT_COMMAND</code>; multi-line paste runs together on Enter; unfinished commands
+continue with <code>&gt; </code>.</li>
+<li>Prompts: a two-line Parrot OS style default with the git branch and a red
+<code>[✗]</code> after a failed command, a classic git-bash one, a Powerline one with Nerd
+Font icons, or your own <code>$PS1</code>.</li>
+<li>A startup banner, replaceable with your own ANSI art in <code>/etc/banner</code>.</li>
+<li>Job control: Ctrl+Z, <code>fg</code>, <code>bg</code>, <code>jobs</code>,
+<code>suspend</code> on Linux and macOS; <code>kill -STOP</code> / <code>-CONT</code> works on
+Windows too.</li>
+</ul>
+
+<h3>Settings</h3>
+<ul>
+<li><code>/etc/profile</code> for everyone, <code>~/.mmcrc</code> for you, login files
+<code>~/.mmc_profile</code> / <code>~/.mmc_logout</code>, and <code>$MMC_ENV</code> /
+<code>$BASH_ENV</code> for scripts — all plain bash.</li>
+<li><code>usr/bin/</code> is on the PATH for your own programs and scripts.</li>
+</ul>
+
+<h3>Windows paths, done like git-bash</h3>
+<ul>
+<li><code>/</code> is the mmc folder, <code>/d/env</code> is <code>D:\env</code>,
+<code>/tmp</code> is <code>%TEMP%</code>, <code>/dev/null</code> is <code>NUL</code>.</li>
+<li>Arguments and environment values that look like Linux paths are turned back into
+Windows paths when a Windows program starts, so git, node, go and VS Code get what they
+expect; switches like <code>/c</code> are left alone.</li>
+<li>PortableGit's own GNU tools (<code>sed</code>, <code>grep</code> …) work alongside it.</li>
+<li><code>.exe .com .cmd .bat</code> are found without the extension, and <code>#!</code>
+scripts run with their interpreter.</li>
+<li>No <code>fork()</code> needed and no emulation layer like MSYS2 or Cygwin: one native
+program calling Win32 on Windows and POSIX on Linux and macOS.</li>
+</ul>
+
+<h3>Tools for scripts</h3>
+<ul>
+<li><code>mmc --check a.sh</code> reports syntax errors and commands that do not exist,
+without running anything — it reads the 70 shell scripts of PortableGit, Flutter, emsdk and
+the Android SDK cleanly.</li>
+<li><code>mmc --complete 'git ch'</code> prints what Tab would offer, for debugging
+completion scripts.</li>
+<li><code>mmc -c</code>, <code>-s</code>, <code>-e -x -o pipefail</code>, <code>-n</code>,
+<code>--rcfile</code>, and <code>#!/usr/bin/env mmc</code>.</li>
+</ul>
+
+<h2>mmc-term: every feature</h2>
+<p>git-bash is bash inside the mintty window; mmc has its own. One shared core draws the
+<em>whole</em> terminal — text, box drawing, cursor, selection, scrollbar, even the menu —
+into a pixel buffer, and a small backend per system only shows it, so it looks the same
+everywhere.</p>
+
+<h3>Tabs and panes</h3>
+<ul>
+<li>Tabs (Ctrl+Shift+T), each its own shell started in the current folder; drag them to
+reorder, double-click to rename, and a green dot marks a background tab with new output.</li>
+<li>Split panes side by side or stacked (Ctrl+Shift+D / E), up to 8 per tab, resizable by
+dragging, with Alt+arrow to move between them.</li>
+<li>New windows (Ctrl+Shift+N) open in the same folder, via <code>OSC 7</code>.</li>
+</ul>
+
+<h3>Look</h3>
+<ul>
+<li>Five themes — dark, green, gruvbox, red, light — switched with Ctrl+Shift+L, or your own
+colors in <code>mmcterm.conf</code>.</li>
+<li>See-through window (Ctrl+Shift+wheel, 30–100%), full screen (F11), zoom with Ctrl +/−
+or Ctrl+wheel.</li>
+<li>On Windows, its own title bar with round yellow / green / red buttons; snapping and
+resizing still work, and <code>titlebar=native</code> brings the system one back.</li>
+</ul>
+
+<h3>Text rendering</h3>
+<ul>
+<li>JetBrains Mono Nerd Font bundled, with Powerline symbols and Nerd Font icons; fonts in
+the mmc folder are found first, so the font travels too.</li>
+<li><strong>Ligatures</strong> (<code>-&gt; =&gt; != ===</code>) read by mmc itself from the
+font's OpenType GSUB tables, one letter per cell, with the cell under the cursor shown as
+typed.</li>
+<li><strong>Color emoji</strong> from the system emoji font (COLR, CBDT and sbix, with its
+own PNG reader), including skin tones and ZWJ sequences.</li>
+<li>Sharp small text: ClearType through GDI on Windows, and a built-in rasterizer with
+stem darkening and x-height snapping elsewhere.</li>
+<li>Powerline arrows, box drawing and block characters drawn as geometry, so prompt
+segments join without seams at any size.</li>
+<li>Underline styles and colors (double, curly, dotted, dashed), overline and blink.</li>
+</ul>
+
+<h3>Selecting, finding, copying</h3>
+<ul>
+<li>Drag, double-click and triple-click to select a word or line; selecting copies.
+Ctrl+Shift+C / V, Ctrl+Insert / Shift+Insert, middle-click paste.</li>
+<li>Find in the screen and scrollback (Ctrl+Shift+F), 10,000 lines of scrollback.</li>
+<li>Ctrl+click opens web and mail links, both plain-text addresses and <code>OSC 8</code>
+hyperlinks — only <code>http</code>, <code>https</code>, <code>ftp</code> and
+<code>mailto</code>, never <code>file://</code>.</li>
+<li>Text reflows like a paragraph when the window is resized.</li>
+</ul>
+
+<h3>Compatibility with programs</h3>
+<ul>
+<li>xterm/VT compatible: vim, nvim, htop, lazygit and other full-screen programs work.</li>
+<li>Mouse reporting (<code>?1000 ?1002 ?1003</code>, SGR <code>?1006</code>); hold Shift to
+select text anyway.</li>
+<li>The kitty keyboard protocol, so programs can tell Ctrl+I from Tab.</li>
+<li><strong>Sixel images</strong> (<code>img2sixel</code>, <code>chafa</code>) that scroll and
+reflow with the text.</li>
+<li>Color queries <code>OSC 10/11/12</code> and <code>OSC 4</code> (nvim picks its theme from
+them), clipboard via <code>OSC 52</code>, synchronized output <code>?2026</code>,
+<code>DECRQM</code>, origin mode.</li>
+<li>ConPTY on Windows and a real pty on Linux and macOS.</li>
+</ul>
+
+<h3>Fast</h3>
+<ul>
+<li>Only the rows that changed are redrawn — about 20 times less work when typing — and
+only those rows are copied to the screen. A steady cursor costs nothing while idle.</li>
+<li>No GPU needed: the software renderer is fast enough and depends on nothing from the
+system. X11 and Cocoa are loaded at run time, which is how zig cross-compiles the Linux and
+macOS builds from Windows without an SDK.</li>
+</ul>
+
+<h2>Download</h2>
+<p>Ready-made archives are on the
+<a href="https://github.com/marjoncajocon/mmc-shell/releases" rel="noopener">releases page</a>,
+one per system, with a <code>SHA256SUMS.txt</code> to check them.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Archive</th><th>For</th></tr></thead>
+<tbody>
+<tr><td><code>windows-x64.zip</code></td><td>Windows 10/11, most PCs</td></tr>
+<tr><td><code>windows-arm64.zip</code></td><td>Windows on ARM</td></tr>
+<tr><td><code>linux-x64</code>, <code>linux-arm64</code></td><td>Linux (not yet tested on a real machine)</td></tr>
+<tr><td><code>macos-x64</code>, <code>macos-arm64</code></td><td>macOS Intel / Apple Silicon (not yet tested)</td></tr>
+<tr><td><code>linux-arm</code></td><td>The shell alone, for older 32-bit Android phones (Termux)</td></tr>
+</tbody></table></div>
+<p>On Windows: unzip, add the folder to your <code>PATH</code>, then type
+<code>mmc-term</code> for the window or <code>mmc-shell</code> for the shell inside another
+terminal.</p>
+
+<h2>Build it yourself</h2>
+<p>The only tool needed is <a href="https://ziglang.org" rel="noopener">zig</a>, used as a C
+compiler. <code>build cross</code> produces Windows, Linux (static) and macOS programs for
+x86_64 and aarch64 from any of the three systems; on Linux or macOS a plain
+<code>make</code> with gcc works too.</p>
+
+<div class="callout">
+<p><strong>Where it stands.</strong> Version 0.2.0. Fully tested on Windows 11: it builds with
+zero warnings under <code>-std=c11 -Wall -Wextra -pedantic</code>, passes all 440 bash
+compatibility cases and the 290 checks of the terminal core. The Linux and macOS builds
+compile cleanly but have not been run on real machines yet — bug reports are welcome.</p>
+</div>
+
+<h2>License</h2>
+<p>mmc-shell is free software under the MIT License. You may use, copy, change and share it,
+commercially too. The only code not written for it is Sean Barrett's
+<code>stb_truetype.h</code> (MIT or public domain), and the bundled font keeps its SIL Open
+Font License.</p>
+</div>
+</div></main><footer class="site-foot"><div class="wrap">
+<div class="foot-links">
+<a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/chess-ta/variants/">Chess variants</a>
+<a href="/projects/dama-ta/">Dama Ta!</a>
+<a href="/projects/brazilian/">Brazilian Checkers</a>
+<a href="/projects/international/">International Draughts</a>
+<a href="/projects/russian/">Russian Checkers</a>
+<a href="/projects/english/">English Draughts</a>
+<a href="/projects/turkish/">Turkish Draughts</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM engine</a>
+<a href="/projects/mmc-shell/">mmc-shell</a>
+<a href="/blog/">Writing</a>
+</div>
+<p>&copy; 2026 Marjon Cajocon · published as MMC Solo Dev. Board-game engines in C, apps in Flutter.</p>
+</div></footer>
+<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><div class="about-in">
+<div class="about-head">
+  <img src="/res/profile.jpg" alt="" width="68" height="68">
+  <div><h2 id="aboutTitle" style="margin:0">Marjon Cajocon</h2>
+  <p style="margin:.2rem 0 0;color:var(--muted)">Software engineer · Talibon, Bohol, Philippines</p></div>
+</div>
+<p>I build game engines in C and the apps that ship them. Seven board-game
+engines, six of them running NNUE neural networks I trained myself, plus a
+from-scratch LLM engine written in dependency-free C.</p>
+<dl>
+  <dt>Developer</dt><dd><strong>MMC Solo Dev</strong> — the name my apps ship under
+      on Google Play and the Microsoft Store</dd>
+  <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
+  <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
+  <dt>Certification</dt><dd>EDP Specialist — Civil Service, rated <strong>94.65%</strong>
+      <span style="color:var(--muted)">(80% to pass)</span></dd>
+  <dt>Published</dt><dd>Six apps on the Microsoft Store, five on Google Play</dd>
+  <dt>Contact</dt><dd><a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></dd>
+  <dt>Code</dt><dd><a href="https://github.com/marjoncajocon" rel="noopener">github.com/marjoncajocon</a></dd>
+</dl>
+<p style="margin-top:1.2rem"><button class="btn btn-outline" id="aboutClose" type="button">Close</button></p>
+</div></dialog>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
