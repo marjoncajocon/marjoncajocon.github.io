@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mme — VS Code for the terminal, written in C</title>
+<meta name="description" content="mme: an open-source code editor that brings VS Code to the terminal, written from scratch in pure C11. One executable, no dependencies, plus mme-sdl in a window of its own. MIT licensed.">
+<link rel="canonical" href="https://marjoncajocon.github.io/projects/mme/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marjon Cajocon">
+<meta property="og:title" content="mme — VS Code for the terminal, written in C">
+<meta property="og:description" content="mme: an open-source code editor that brings VS Code to the terminal, written from scratch in pure C11. One executable, no dependencies, plus mme-sdl in a window of its own. MIT licensed.">
+<meta property="og:url" content="https://marjoncajocon.github.io/projects/mme/">
+<meta property="og:image" content="https://marjoncajocon.github.io/assets/img/mme/mme-terminal.gif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="mme — VS Code for the terminal, written in C">
+<meta name="twitter:description" content="mme: an open-source code editor that brings VS Code to the terminal, written from scratch in pure C11. One executable, no dependencies, plus mme-sdl in a window of its own. MIT licensed.">
+<meta name="twitter:image" content="https://marjoncajocon.github.io/assets/img/mme/mme-terminal.gif">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "mme", "description": "VS Code for the terminal: a code editor written from scratch in pure C11, one executable with no dependencies.", "programmingLanguage": "C", "codeRepository": "https://github.com/marjoncajocon/mme_project", "license": "https://opensource.org/licenses/MIT", "runtimePlatform": ["Windows", "Linux", "macOS"], "author": {"@type": "Person", "name": "Marjon Cajocon", "url": "https://marjoncajocon.github.io/"}, "url": "https://marjoncajocon.github.io/projects/mme/"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="1" y="13" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/></svg> Marjon Cajocon</a>
+<nav class="nav" aria-label="Main">
+<a href="/#apps">Apps</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM</a>
+<a href="/blog/">Writing</a>
+<button class="btn-ghost" id="aboutBtn" type="button">About me</button>
+<button class="btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle light / dark">&#9681;</button>
+</nav></div></header>
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="/">Home</a> &rsaquo; mme</p>
+<section class="hero" style="border:0;padding-bottom:1rem">
+  <span class="eyebrow">Open source · MIT license</span>
+  <h1>mme: VS Code for the terminal, written in C.</h1>
+  <p class="lede">A code editor laid out like VS Code, written from scratch in pure C11. No
+  dependencies and no installer: one executable. <code>mme .</code> opens the folder you are
+  in, like <code>code .</code> does.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="https://github.com/marjoncajocon/mme_project" rel="noopener">Source on GitHub</a>
+    <a class="btn btn-outline" href="/projects/mmc-shell/">Pairs with mmc-shell</a>
+  </div>
+  <ul class="pills">
+    <li class="pill is-primary">C11</li><li class="pill">Windows</li>
+    <li class="pill">Linux</li><li class="pill">macOS</li><li class="pill">Terminal &amp; SDL2</li>
+  </ul>
+  <figure class="hero-shot">
+    <img src="/assets/img/mme/mme-terminal.gif" alt="mme editing code inside a terminal: Go to File, typing a function, saving from the Command Palette, git diff in the terminal panel and the change in Source Control" width="880" height="544" loading="lazy" decoding="async">
+    <figcaption>mme in a terminal (here mmc-term): Go to File, a function typed, saved from the
+    Command Palette, <code>git diff</code> in the terminal panel, the change in Source Control.</figcaption>
+  </figure>
+</section>
+
+<div class="prose">
+<h2>The idea</h2>
+<p>I wanted VS Code's layout and keys without leaving the terminal: the menu bar, the
+activity bar, the Explorer, the editor tabs, the panel and the status bar, all where VS Code
+puts them, and the same <code>settings.json</code> and <code>keybindings.json</code>. mme is
+my personal editor, and it borrows that design on purpose — if you know VS Code, you already
+know mme.</p>
+<p>There are two programs built from the same sources:</p>
+<ul>
+<li><strong>mme</strong>, the editor in a terminal;</li>
+<li><strong>mme-sdl</strong>, the same editor in a window of its own (SDL2). It paints its
+picture straight into the window, instead of passing escape sequences through a pseudo
+console and a terminal — one program instead of three.</li>
+</ul>
+
+<figure class="hero-shot">
+  <img src="/assets/img/mme/mme-sdl.gif" alt="mme-sdl, the same editor running in its own SDL2 window, doing the same edits" width="880" height="544" loading="lazy" decoding="async">
+  <figcaption>mme-sdl, the same editor in a window of its own, doing the same.</figcaption>
+</figure>
+
+<h2>What it does</h2>
+
+<h3>The editor</h3>
+<ul>
+<li>Tabs, split editor groups, breadcrumbs, sticky scroll, folding, the minimap, indent
+guides and rulers, word wrap and Zen Mode.</li>
+<li>Multiple cursors, column selection, smart select, linked editing, Emmet for HTML and CSS,
+snippets in VS Code's format, and <code>.editorconfig</code>.</li>
+<li>Find and Replace with regular expressions, Search across files with include / exclude
+globs, and the Search Editor.</li>
+<li>Syntax highlighting for about sixty languages. When VS Code is on the machine, mme reads
+the TextMate grammars of its built-in and installed extensions and colors code exactly as
+VS Code does.</li>
+<li>Themes: Dark Modern, Dark+, Light+, Monokai, Solarized Dark, and Dark / Light High
+Contrast.</li>
+<li>A Vim mode with VSCodeVim's keys, modes, registers, macros and the <code>:</code>
+line.</li>
+<li>Markdown preview, a picture preview (drawn as sixel in a terminal), a hex viewer for
+binary files, and Jupyter notebooks with a kernel.</li>
+</ul>
+
+<h3>IntelliSense and debugging</h3>
+<ul>
+<li>A Language Server Protocol client: completion, hover, parameter hints, go to definition
+and references, rename, inlay hints, semantic highlighting, code lens, quick fixes and
+refactorings with a Refactor Preview — with clangd, gopls, rust-analyzer, pylsp,
+typescript-language-server, zls and others.</li>
+<li>Run and Debug through the Debug Adapter Protocol (dlv, debugpy, lldb-dap, gdb), with
+breakpoints, data breakpoints and the Debug Console.</li>
+<li>Tasks from <code>.vscode/tasks.json</code> (and found ones for make, go, npm, cargo) with
+problem matchers, and a Testing view for Go, Python, Rust and npm tests.</li>
+</ul>
+
+<h3>Git and GitHub</h3>
+<ul>
+<li>Source Control: stage, unstage, commit, several repositories, the diff editor, quick diff
+in the gutter, and blame.</li>
+<li>The Graph, branches, worktrees, pull / push / sync, rebase, cherry-pick, tags, remotes and
+stash.</li>
+<li>Merge conflicts and a three-pane merge editor (Incoming and Current over the Result).</li>
+<li>GitHub pull requests and issues: lists, descriptions, checkout, comments and
+create.</li>
+</ul>
+
+<h3>The rest of the workbench</h3>
+<ul>
+<li>Integrated terminals in the panel, split, with links, find and shell integration.</li>
+<li>Remote-SSH, WSL and Dev Containers, with forwarded ports and a Remote Explorer.</li>
+<li>Extensions: install from VSIX and use what an extension describes — color themes, file
+icon themes, snippets, languages, TextMate grammars — plus the language servers and debug
+adapters it ships.</li>
+<li>Settings Sync through a secret GitHub Gist, profiles, multi-root workspaces, and
+Preferences: Import VS Code Settings.</li>
+<li>Chat and Inline Chat with Claude, through Anthropic's API.</li>
+<li>Local History and the Timeline, hot exit and restore, auto save, and accessibility
+signals with a voice of its own.</li>
+</ul>
+
+<h2>Build it yourself</h2>
+<p>mme is plain C11 with no libraries: one C compiler is all it needs, and all the C code
+sits in the root folder. <a href="https://ziglang.org" rel="noopener">zig</a> is the default
+compiler; no CMake, no package manager.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Command</th><th>What it builds</th></tr></thead>
+<tbody>
+<tr><td><code>build</code></td><td><code>mme.exe</code> on Windows</td></tr>
+<tr><td><code>build cross</code> / <code>make cross</code></td><td>Windows, Linux (static musl) and macOS on x86_64 and aarch64, plus 32-bit arm-linux</td></tr>
+<tr><td><code>make</code></td><td>Linux / macOS (zig cc, gcc or clang)</td></tr>
+<tr><td><code>sdl2_port\build</code></td><td><code>mme-sdl</code> with zig; <code>gcc</code>, <code>tcc</code>, <code>msvc</code> and a 32-bit Windows XP build are options too</td></tr>
+</tbody></table></div>
+<p>The icons are codicons and Seti's, from a Nerd Font: mmc-term's bundled JetBrains Mono
+Nerd Font has them; other terminals need a Nerd Font too. Ctrl+Shift+letter keys need a
+terminal with the kitty keyboard protocol (mmc-term, kitty, WezTerm, foot, Ghostty).</p>
+
+<div class="callout">
+<p><strong>Where it stands.</strong> Every build target above builds from the same sources,
+with zero warnings under zig. A regression suite drives mme in a pseudo console through
+scripted scenarios. What is not here: an extension's own JavaScript does not run, and remote
+development is Remote-SSH, WSL and Dev Containers only (no Remote Tunnels or
+Codespaces).</p>
+</div>
+
+<h2>License</h2>
+<p>mme is free software under the MIT License. You may use, copy, change and share it,
+commercially too. A few files are shared with
+<a href="/projects/mmc-shell/">mmc-shell</a>, including mmc-term's terminal core.</p>
+</div>
+</div></main><footer class="site-foot"><div class="wrap">
+<div class="foot-links">
+<a href="/projects/chess-ta/">Chess Ta!</a>
+<a href="/projects/chess-ta/variants/">Chess variants</a>
+<a href="/projects/dama-ta/">Dama Ta!</a>
+<a href="/projects/brazilian/">Brazilian Checkers</a>
+<a href="/projects/international/">International Draughts</a>
+<a href="/projects/russian/">Russian Checkers</a>
+<a href="/projects/english/">English Draughts</a>
+<a href="/projects/turkish/">Turkish Draughts</a>
+<a href="/projects/engine/">Engine</a>
+<a href="/projects/llm-project/">LLM engine</a>
+<a href="/projects/mmc-shell/">mmc-shell</a>
+<a href="/projects/mme/">mme</a>
+<a href="/blog/">Writing</a>
+</div>
+<p>&copy; 2026 Marjon Cajocon · published as MMC Solo Dev. Board-game engines in C, apps in Flutter.</p>
+</div></footer>
+<dialog class="about" id="aboutDlg" aria-labelledby="aboutTitle"><div class="about-in">
+<div class="about-head">
+  <img src="/res/profile.jpg" alt="" width="68" height="68">
+  <div><h2 id="aboutTitle" style="margin:0">Marjon Cajocon</h2>
+  <p style="margin:.2rem 0 0;color:var(--muted)">Software engineer · Talibon, Bohol, Philippines</p></div>
+</div>
+<p>I build game engines in C and the apps that ship them. Seven board-game
+engines, six of them running NNUE neural networks I trained myself, plus a
+from-scratch LLM engine written in dependency-free C.</p>
+<dl>
+  <dt>Developer</dt><dd><strong>MMC Solo Dev</strong> — the name my apps ship under
+      on Google Play and the Microsoft Store</dd>
+  <dt>Primary</dt><dd>C — engines, evaluation, search, the LLM stack</dd>
+  <dt>Then</dt><dd>Go · Flutter (Dart) · Python · TypeScript / JavaScript</dd>
+  <dt>Certification</dt><dd>EDP Specialist — Civil Service, rated <strong>94.65%</strong>
+      <span style="color:var(--muted)">(80% to pass)</span></dd>
+  <dt>Published</dt><dd>Six apps on the Microsoft Store, five on Google Play</dd>
+  <dt>Contact</dt><dd><a href="mailto:marjoncajocon08@gmail.com">marjoncajocon08@gmail.com</a></dd>
+  <dt>Code</dt><dd><a href="https://github.com/marjoncajocon" rel="noopener">github.com/marjoncajocon</a></dd>
+</dl>
+<p style="margin-top:1.2rem"><button class="btn btn-outline" id="aboutClose" type="button">Close</button></p>
+</div></dialog>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
